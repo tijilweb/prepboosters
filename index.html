@@ -582,6 +582,37 @@
             </div>
         </div>
     </footer>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector(".search-container input");
+    const searchButton = document.querySelector(".search-container button");
+    const cards = document.querySelectorAll(".resource-card");
+
+    function searchResources() {
+        const searchText = searchInput.value.toLowerCase();
+        cards.forEach(card => {
+            const title = card.querySelector("h3").textContent.toLowerCase();
+            const description = card.querySelector("p").textContent.toLowerCase();
+            if (title.includes(searchText) || description.includes(searchText)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
+    // Button click
+    searchButton.addEventListener("click", searchResources);
+
+    // Press Enter in input
+    searchInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            searchResources();
+        }
+    });
+});
+</script>
 </body>
 
 </html>
+
