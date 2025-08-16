@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ▄︻デP̷R̷E̷P̷B̷O̷O̷S̷T̷E̷R̷S̷══━一⚡</title>
+    <style>
+        :root {
+            --dark-bg: #121212;
+            --darker-bg: #1e1e1e;
+            --light-text: #ffffff;
+            --accent: #bb86fc;
+            --accent-dark: #3700b3;
+            --card-bg: #2d2d2d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--darker-bg);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(-5deg);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent), #03dac6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-container {
+            display: flex;
+            width: 40%;
+            min-width: 250px;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 20px;
+            background: var(--card-bg);
+            border: 1px solid #444;
+            border-radius: 25px 0 0 25px;
+            font-size: 1rem;
+            outline: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .search-container input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.3);
+        }
+
+        .search-container button {
+            padding: 0 20px;
+            background-color: var(--accent);
+            color: black;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container button:hover {
+            background-color: #03dac6;
+        }
+
+        .search-icon {
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background-color: var(--darker-bg);
+            padding: 1rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background-color: var(--darker-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            color: var(--accent);
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid #444;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+
+        .resource-card h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .resource-card p {
+            color: #aaa;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: black;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            align-self: flex-start;
+        }
+
+        .btn:hover {
+            background: #03dac6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: var(--darker-bg);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h1 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/zXVLNBs0/6120894624269714295.jpg" alt=" ▄︻デP̷R̷E̷P̷B̷O̷O̷S̷T̷E̷R̷S̷══━一⚡ Logo">
+                    <h1> ▄︻デP̷R̷E̷P̷B̷O̷O̷S̷T̷E̷R̷S̷══━一⚡</h1>
+                </div>
+                <div class="search-container">
+                    <input type="text" placeholder="Search resources...">
+                    <button><span class="search-icon">🔍</span></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#Pw Batches">Pw Batches</a></li>
+                 <li><a href="#Add Materials">Add Materials</a></li>
+                <li><a href="#books">Books</a></li>
+                <li><a href="#modules">Modules</a></li>
+                <li><a href="#pyqs">PYQs</a></li>
+                <li><a href="#formulas">Formulas</a></li>
+                <li><a href="#practice">Practice</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <!-- Pw Batches section -->
+            <section id="Pw Batches" class="section">
+                <h2 class="section-title">📂Pw Batches</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>"Arjuna Jee 2026"</h3>
+                        <p>Pw Jee Batch for Class 11th</p>
+                        <a href="https://t.me/+g8A2RTO_7ldkZTA1" class="btn">Let's Study</a>
+                    </div>
+                    
+                     <div class="resource-card">
+                        <h3>"Lakshya Jee 2026"</h3>
+                        <p>Pw Jee Batch for Class 12th</p>
+                        <a href="https://t.me/+8qB0CFxRhqRmNTQ1" class="btn">Let's Study</a>
+                     </div>
+                            
+                     <div class="resource-card">
+                        <h3>"parishram 2026"</h3>
+                        <p>Pw Batch for Class 12th Boards</p>
+                        <a href="https://t.me/+s2EZNJRvUU43MDNl" class="btn">Let's Study</a>
+                    </div>
+            
+                     <div class="resource-card">
+                        <h3>"Uday 2026"</h3>
+                        <p>Pw Batch for Class 11th Students</p>
+                        <a href="https://t.me/+4xreTHMzWCA0YjY9" class="btn">Let's Study</a>
+                    </div> 
+                      
+                     <div class="resource-card">
+                        <h3>"Uday reloaded 2026"</h3>
+                        <p>Pw Batch for Class 11th Students</p>
+                        <a href="https://t.me/Uday_Reloaded_Science_2026_PW" class="btn">Let's Study</a>
+                    </div> 
+                        
+                   <div class="resource-card">
+                        <h3>"Uday reloaded 2026"</h3>
+                        <p>Pw Batch for Class 11th Students</p>
+                        <a href="https://t.me/Uday_Reloaded_Science_2026_PW" class="btn">Let's Study</a>
+                    </div>
+                        
+                   <div class="resource-card">
+                        <h3>"Arjuna Jee 2.0 Batch"</h3>
+                        <p>Pw Jee Batch for Class 11th</p>
+                        <a href="https://t.me/Arjuna_JEE_2_0_2026_Batch_Lec" class="btn">Let's Study</a>
+                    </div>
+                        
+                    <div class="resource-card">
+                        <h3>"Prayas Jee 2.0 Batch"</h3>
+                        <p>Pw Jee Batch for Class Droppers</p>
+                        <a href="https://t.me/Prayas_Jee_2_0_2026_Batch_Lecs" class="btn">Let's Study</a>
+                    </div>
+                        
+                    <div class="resource-card">
+                        <h3>"Arjuna Jee 3.0 2026"</h3>
+                        <p>Pw Jee Batch for Class 11th</p>
+                        <a href="https://t.me/PW_Arjuna_JEE_3_O_2026" class="btn">Let's Study</a>
+                    </div> 
+                        
+                     <div class="resource-card">
+                        <h3>"Lakshya Jee 2.0 2026"</h3>
+                        <p>Pw Jee Batch for Class 12th</p>
+                        <a href="https://t.me/lakshya_jee_2_0_2026" class="btn">Let's Study</a>
+                    </div>
+                        
+                     <div class="resource-card">
+                        <h3>"Lakshya Jee 3.0 2026"</h3>
+                        <p>Pw Jee Batch for Class 12th</p>
+                        <a href="https://t.me/ARJUNA_2_0_3_0_JEE_2027_BATCH" class="btn">Let's Study</a>
+                    </div>        
+                    </div>
+                    </section>
+            
+            <!-- Add Materials Section -->
+            <section id="Add Materials" class="section">
+                <h2 class="section-title">📂Add Materials</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>"Got a resource we missed? 📚 Suggest it here!"</h3>
+                        <p>Click On Add Here Button</p>
+                        <a href="https://forms.gle/MGWuaeETn4xQqBPy7" class="btn">Add Here</a>
+                    </div>
+                    </div>
+                    </section>
+            
+            <!-- Books Section -->
+            <section id="books" class="section">
+                <h2 class="section-title">📚 Books</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>HC Verma Physics</h3>
+                        <p>Complete HC Verma solutions for Physics</p>
+                        <a href="https://drive.google.com/drive/folders/1zi5sSNh2v0wF2O6Nx4JG6H84BsF1kgNP" class="btn">Access</a>
+                    </div>
+
+                     <div class="resource-card">
+                        <h3>Math made easy by ritik sir class 10th</h3>
+                        <p>Handwritten notes by babua sir class 10th</p>
+                        <a href="https://drive.google.com/file/d/1dvETKGiH_EYiH3Fl9Hftlo0EeI6guVgr/view?usp=drive_link" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>MS Chauhan Organic</h3>
+                        <p>Organic Chemistry by MS Chauhan</p>
+                        <a href="https://drive.google.com/file/d/1RoJoghPR3z0cX6ysOK7vUEINdFLDJgTJ/view" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>math made eajee</h3>
+                        <p>BY sachin sir</p>
+                        <a href="https://drive.google.com/file/d/1RK5VScgtnw3v8NRsQKSmCAamktVJZEB5/view?usp=drive_link" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>VK Jaiswal Inorganic</h3>
+                        <p>Inorganic Chemistry by VK Jaiswal</p>
+                        <a href="https://drive.google.com/file/d/1RsP_bm-_CMiIgpKiYDdwE6wh0BVxmJiF/view" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>N Awasthi Physical</h3>
+                        <p>Physical Chemistry by N Awasthi</p>
+                        <a href="https://drive.google.com/file/d/12u7I0JC__3vN9PQXqtMfbTNZVZCdtuzd/view" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Cengage Series</h3>
+                        <p>Mathematics and Physics books</p>
+                        <a href="https://drive.google.com/drive/folders/1J8cCmrSTcUZ1cbFMqvhZLzenPmcLhJyb" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Irodov Problems</h3>
+                        <p>Advanced Physics problems</p>
+                        <a href="https://drive.google.com/drive/folders/1zLa_9k9U-7o-n4njA4MqSKQ0k3abMMxt" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>RD Sharma Objective</h3>
+                        <p>Mathematics problems and solutions</p>
+                        <a href="https://drive.google.com/drive/folders/1p1ZWgpoFAxHTDrqouUEB0ayAobnNTg8g" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>A Das Gupta Math</h3>
+                        <p>Mathematics problems and solutions</p>
+                        <a href="https://drive.google.com/file/d/18Eqr9WXelWCEVYTkOKc1dx6Ew0leW3Sv/view" class="btn">Access</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modules Section -->
+            <section id="modules" class="section">
+                <h2 class="section-title">📂 Modules</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>Arjuna JEE Modules</h3>
+                        <p>Complete Arjuna JEE study material</p>
+                        <a href="https://drive.google.com/drive/folders/1mZaT9E-zrbiAWqTTUH8dUudSGsQSAvt5" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Lakshya JEE Modules</h3>
+                        <p>Lakshya JEE study modules</p>
+                        <a href="https://drive.google.com/drive/folders/1nGQxpBzgKn9OrtTP6Hhp-qaG9x1xR_-O" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Prayas JEE Modules</h3>
+                        <p>Prayas JEE study material</p>
+                        <a href="https://drive.google.com/drive/folders/1yPIRL9I_0zlaZjQTPS48Q_jEpJECEzlM" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Allen Modules</h3>
+                        <p>Allen Mathematics modules</p>
+                        <a href="https://drive.google.com/drive/folders/1yjWqnH4fqGaCx0SW5jO3vqJ66sPCL_8i" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>Arjuna AIR Modules</h3>
+                        <p>Advanced modules for top rankers</p>
+                        <a href="https://drive.google.com/drive/folders/175ZybDCg0pA8lT5Yy2htp2SAh6sussKA" class="btn">Access</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PYQs Section -->
+            <section id="pyqs" class="section">
+                <h2 class="section-title">📝 PYQs</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>JEE Advanced PYQs</h3>
+                        <p>Previous year questions for Advanced</p>
+                        <a href="https://drive.google.com/drive/folders/1omIy2ZmvVDrRUSlJ5SK60YtPKOvxyUv_" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>JEE Mains PYQs</h3>
+                        <p>Previous year questions for Mains</p>
+                        <a href="https://drive.google.com/drive/folders/1odsK6Erh70ezoT6q_KEUzvO2TFgI9FPq" class="btn">Access</a>
+                    </div>
+
+                     <div class="resource-card">
+                        <h3>Pw Neet Pyq Biology</h3>
+                        <p>Previous year questions for Neet Biology</p>
+                        <a href="https://drive.google.com/file/d/1dn-Fk6ZcIRP3VrnqNKhwRbR1KpRL9bvj/view?usp=sharing" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Disha PYQs</h3>
+                        <p>PYQs compiled by Disha</p>
+                        <a href="https://drive.google.com/drive/folders/1z6m8mPjl7fGVGayXZ8FJGKXsSmY2mOfH" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>PW 7 Years PYQs</h3>
+                        <p>Physics Wallah's PYQ collection</p>
+                        <a href="https://drive.google.com/file/d/1IqHUB8yzrQh1_J-fn8DTUjAqw1OjSWCa/view" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>JEE Advanced Papers</h3>
+                        <p>Official question papers</p>
+                        <a href="https://drive.google.com/drive/folders/1yqefoSrFhQq4Qd0m5RSHiDzxrIJCabpF" class="btn">Access</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formula Sheets -->
+            <section id="formulas" class="section">
+                <h2 class="section-title">🧮 Formula Sheets</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>Complete Formula Sheet</h3>
+                        <p>All formulas for JEE preparation</p>
+                        <a href="https://drive.google.com/drive/folders/181t1DrbwqTvcdmMpM4gADWcy2WZq90as" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Physics Formulas</h3>
+                        <p>Important physics formulas</p>
+                        <a href="https://drive.google.com/file/d/1GEgTz7GoWkkNpqQZOhqv5nMRdY_llY4M/view" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>skc class 12th</h3>
+                        <p>handwritten formula book by saleem sir</p>
+                        <a href="https://drive.google.com/file/d/17WIoAsCCa-oPuCzaoABZ244rsxMDIsN-/view?usp=drive_link" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Periodic Table</h3>
+                        <p>Complete periodic table</p>
+                        <a href="https://drive.google.com/file/d/1ISJ3kmo31qhThYnn-V9Y232HJpk9Avrd/view" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>skc class 11th</h3>
+                        <p>handwritten notes by saleem sir</p>
+                        <a href="https://drive.google.com/file/d/1SMjJaeW18EGKTNeVAV7e4TRKYsaoNKLA/view?usp=drive_link" class="btn">Access</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practice Section -->
+            <section id="practice" class="section">
+                <h2 class="section-title">📝 Practice</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>JEE Super 500</h3>
+                        <p>500 important questions</p>
+                        <a href="https://drive.google.com/drive/folders/1889awiS3SvegtZRhkDYRWmH4GtUunoZu" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>AITS Papers</h3>
+                        <p>All India Test Series</p>
+                        <a href="https://drive.google.com/drive/folders/1yfwfX-tkFElASIgRN1wkpS9n8V8cSfvY" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Advanced Practice Sheets</h3>
+                        <p>Practice questions for JEE Advanced</p>
+                        <a href="https://drive.google.com/drive/folders/1xj9Cd8FwmLkRxd10-janJs6MIq_i_9Lt" class="btn">Access</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Short Notes</h3>
+                        <p>Concise notes for quick revision</p>
+                        <a href="https://drive.google.com/drive/folders/1ysbuQgLp7QmVmFtkjgr5lPLQDK8RY5ca" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>Math Black Book</h3>
+                        <p>Advanced mathematics problems</p>
+                        <a href="https://drive.google.com/drive/folders/1zP1RANMAz8XJqfc6-bEpNUYU6gz6sk2B" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>DC Pandey</h3>
+                        <p>Physics practice problems</p>
+                        <a href="https://drive.google.com/drive/folders/1y4Ja3jOFvqF8ct5IxDL3Z78RT6tyB__e" class="btn">Access</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <h1><a href="privacy-policy.html">Privacy Policy</a></h1>
+                    <h1><a href="https://chat.whatsapp.com/CzS79xnhYRP5u2zWcbByfo?mode=ac_t">Join Our Whatsapp Community</a></h1>
+                    <a href="#books">Books</a>
+                    <a href="#modules">Modules</a>
+                    <a href="#pyqs">PYQs</a>
+                    <a href="#formulas">Formulas</a>
+                </div>
+                <div class="footer-section">
+                    <h1>Our Team:- Tijil,Ayush,Dev,<br>
+                                   Harshit,Kushal</h1>
+                    <h3>Resources</h3>
+                    <a href="#practice">Practice Material</a>
+                    <a href="https://jeemain.nta.nic.in/" target="_blank">JEE Main</a>
+                    <a href="https://jeeadv.ac.in/" target="_blank">JEE Advanced</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: PrepBoosters@gmail.com</p>
+                    <p>Phone: Join Our Community</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 PrepBoosters. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector(".search-container input");
+    const searchButton = document.querySelector(".search-container button");
+    const cards = document.querySelectorAll(".resource-card");
+
+    function searchResources() {
+        const searchText = searchInput.value.toLowerCase();
+        cards.forEach(card => {
+            const title = card.querySelector("h3").textContent.toLowerCase();
+            const description = card.querySelector("p").textContent.toLowerCase();
+            if (title.includes(searchText) || description.includes(searchText)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
+    // Button click
+    searchButton.addEventListener("click", searchResources);
+
+    // Press Enter in input
+    searchInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            searchResources();
+        }
+    });
+});
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
