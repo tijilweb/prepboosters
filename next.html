@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next Page</title>
+<style>
+    :root {
+        --dark-bg: #121212;
+        --darker-bg: #1e1e1e;
+        --neon-purple: #bb86fc;
+        --neon-cyan: #03dac6;
+        --neon-pink: #ff2a6d;
+        --text-glow: 0 0 10px var(--neon-purple);
+    }
+
+    body {
+        background-color: var(--dark-bg);
+        color: #ffffff;
+        font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+        line-height: 1.8;
+        padding: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(187, 134, 252, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(3, 218, 198, 0.1) 0%, transparent 50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            rgba(18, 18, 18, 0) 50%, 
+            rgba(0, 0, 0, 0.25) 50%
+        );
+        background-size: 100% 4px;
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0.15;
+    }
+
+    h1 {
+        color: var(--neon-purple);
+        font-size: 2.5rem;
+        text-shadow: var(--text-glow);
+        margin-bottom: 2rem;
+    }
+
+    p.coming-soon {
+        font-size: 1.5rem;
+        color: var(--neon-cyan);
+        text-shadow: 0 0 10px var(--neon-cyan);
+        margin-bottom: 3rem;
+    }
+
+    .next-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+        color: #000;
+        font-weight: 700;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 6px;
+        box-shadow: 0 0 20px var(--neon-purple), 0 0 30px var(--neon-cyan);
+        transition: all 0.3s ease;
+    }
+
+    .next-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 30px var(--neon-purple), 0 0 40px var(--neon-cyan);
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+        p.coming-soon {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <h1>▄︻デP̷R̷E̷P̷B̷O̷O̷S̷T̷E̷R̷S̷══━一⚡</h1>
+    <p class="Content coming-soon">Content coming soon...</p>
+
+</body>
+</html>
