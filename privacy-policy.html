@@ -8,131 +8,193 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6582107942703234"
      crossorigin="anonymous"></script>
     <style>
-        :root {
-            --dark-bg: #121212;
-            --darker-bg: #1e1e1e;
-            --neon-purple: #bb86fc;
-            --neon-cyan: #03dac6;
-            --neon-pink: #ff2a6d;
-            --text-glow: 0 0 10px var(--neon-purple);
-        }
-        
-        body {
-            background-color: var(--dark-bg);
-            color: #ffffff;
-            font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-            line-height: 1.8;
-            padding: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(187, 134, 252, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(3, 218, 198, 0.1) 0%, transparent 50%);
-        }
-        
-        h1 {
-            color: var(--neon-purple);
-            font-size: 2.5rem;
-            text-shadow: var(--text-glow);
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
-            box-shadow: 0 0 15px var(--neon-purple);
-        }
-        
-        h2 {
-            color: var(--neon-cyan);
-            font-size: 1.8rem;
-            margin-top: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 5px rgba(3, 218, 198, 0.7);
-            position: relative;
-            padding-left: 15px;
-        }
-        
-        h2::before {
-            content: '>';
-            position: absolute;
-            left: -5px;
-            color: var(--neon-pink);
-            text-shadow: 0 0 10px var(--neon-pink);
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            color: #e0e0e0;
-        }
-        
-        .last-updated {
-            color: var(--neon-cyan);
-            font-style: italic;
-            margin-bottom: 2rem;
-            display: block;
-        }
-        
-        .back-btn {
-            display: inline-block;
-            margin-top: 3rem;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
-            color: #000;
-            border: none;
-            border-radius: 4px;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(187, 134, 252, 0.5);
-        }
-        
-        .back-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(187, 134, 252, 0.8);
-        }
-        
-        /* Cyberpunk scanline effect */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                rgba(18, 18, 18, 0) 50%, 
-                rgba(0, 0, 0, 0.25) 50%
-            );
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.15;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 1.5rem;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-        }
+       :root {
+    --dark-bg: #0a0a1a;
+    --darker-bg: #050515;
+    --neon-purple: #6a00ff;
+    --neon-cyan: #00f7ff;
+    --neon-pink: #ff00aa;
+    --neon-blue: #4d00ff;
+    --text-glow: 0 0 10px var(--neon-purple), 
+                0 0 20px rgba(106, 0, 255, 0.5);
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: #e0e0ff;
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    line-height: 1.8;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(106, 0, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 0, 170, 0.15) 0%, transparent 50%),
+        linear-gradient(rgba(10, 10, 26, 0.9), rgba(10, 10, 26, 0.9));
+}
+
+h1 {
+    color: var(--neon-purple);
+    font-size: 2.5rem;
+    text-shadow: var(--text-glow);
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+    box-shadow: 0 0 15px var(--neon-purple),
+               0 0 30px rgba(106, 0, 255, 0.5);
+}
+
+h2 {
+    color: var(--neon-cyan);
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px var(--neon-cyan),
+                0 0 20px rgba(0, 247, 255, 0.3);
+    position: relative;
+    padding-left: 15px;
+}
+
+h2::before {
+    content: '>';
+    position: absolute;
+    left: -5px;
+    color: var(--neon-pink);
+    text-shadow: 0 0 15px var(--neon-pink),
+                0 0 30px rgba(255, 0, 170, 0.4);
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: #e0e0ff;
+}
+
+.last-updated {
+    color: var(--neon-cyan);
+    font-style: italic;
+    margin-bottom: 2rem;
+    display: block;
+    text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 3rem;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px var(--neon-pink),
+               0 0 25px rgba(106, 0, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.back-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px var(--neon-pink),
+               0 0 40px var(--neon-purple);
+    text-shadow: 0 0 10px white;
+}
+
+.back-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        transparent 45%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 55%
+    );
+    transform: rotate(30deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.back-btn:hover::before {
+    animation: shine 1.5s infinite;
+    opacity: 1;
+}
+
+@keyframes shine {
+    0% { left: -50%; }
+    100% { left: 150%; }
+}
+
+/* Cyberpunk scanline effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(10, 10, 26, 0) 50%, 
+        rgba(0, 247, 255, 0.05) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.3;
+}
+
+/* Animated background dots */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(106, 0, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 80% 70%, rgba(255, 0, 170, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: -1;
+    animation: moveDots 100s linear infinite;
+}
+
+@keyframes moveDots {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 500px 500px, -500px -500px; }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 </head>
@@ -164,6 +226,7 @@
 </body>
 
 </html>
+
 
 
 
