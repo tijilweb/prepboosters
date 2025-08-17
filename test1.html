@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Advanced Mini Test - Class 11</title>
+    <style>
+        body {
+            background-color: #0a0a1a;
+            color: #e0e0ff;
+            font-family: 'Arial', sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-container {
+            border: 2px solid #4d00ff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px #6a00ff, inset 0 0 10px #4d00ff;
+            background-color: rgba(10, 5, 30, 0.7);
+        }
+        h1, h2 {
+            color: #00f7ff;
+            text-shadow: 0 0 10px #00c8ff, 0 0 20px #0084ff;
+            text-align: center;
+        }
+        .subject-section {
+            margin: 25px 0;
+            padding: 15px;
+            border-left: 3px solid #ff00aa;
+            box-shadow: -5px 0 10px #ff00aa;
+        }
+        .question {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(30, 10, 50, 0.5);
+            border-radius: 5px;
+            border-bottom: 1px solid #4d00ff;
+        }
+        label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        label:hover {
+            color: #00f7ff;
+            text-shadow: 0 0 5px #00c8ff;
+        }
+        input[type="radio"] {
+            accent-color: #ff00aa;
+            margin-right: 10px;
+        }
+        button {
+            background: linear-gradient(45deg, #ff00aa, #4d00ff);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px #ff00aa;
+        }
+        button:hover {
+            box-shadow: 0 0 25px #ff00aa, 0 0 35px #4d00ff;
+            transform: scale(1.05);
+        }
+        #result {
+            display: none;
+            background-color: rgba(0, 0, 30, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #00f7ff;
+            box-shadow: 0 0 20px #00c8ff;
+            text-align: center;
+            margin-top: 30px;
+        }
+        #score {
+            font-size: 24px;
+            color: #00f7ff;
+            text-shadow: 0 0 10px #00c8ff;
+        }
+        .chapter {
+            font-size: 14px;
+            color: #ffaa00;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>JEE Advanced Mini Test</h1>
+        <h2>Class 11 - First 3 Chapters</h2>
+        
+        <form id="testForm">
+            <!-- Physics - Units & Measurements, Kinematics, Laws of Motion -->
+            <div class="subject-section">
+                <h3>Physics (10 Questions)</h3>
+                
+                <div class="question">
+                    <p>1. The dimensional formula for impulse is: <span class="chapter">(Units & Measurements)</span></p>
+                    <label><input type="radio" name="q1" value="a"> a) [MLT<sup>-2</sup>]</label>
+                    <label><input type="radio" name="q1" value="b"> b) [MLT<sup>-1</sup>]</label>
+                    <label><input type="radio" name="q1" value="c"> c) [ML<sup>2</sup>T<sup>-1</sup>]</label>
+                    <label><input type="radio" name="q1" value="d"> d) [M<sup>2</sup>LT<sup>-1</sup>]</label>
+                </div>
+                
+                <div class="question">
+                    <p>2. A particle moves along x-axis with acceleration a = 6(t - 1), where t is in seconds. If it starts from rest at t=0, then its velocity at t=2s is: <span class="chapter">(Kinematics)</span></p>
+                    <label><input type="radio" name="q2" value="a"> a) 0 m/s</label>
+                    <label><input type="radio" name="q2" value="b"> b) 1 m/s</label>
+                    <label><input type="radio" name="q2" value="c"> c) 2 m/s</label>
+                    <label><input type="radio" name="q2" value="d"> d) 3 m/s</label>
+                </div>
+                
+                <div class="question">
+                    <p>3. A block of mass 5 kg is suspended by two strings making angles 30° and 60° with the ceiling. The tension in the string at 60° is: <span class="chapter">(Laws of Motion)</span></p>
+                    <label><input type="radio" name="q3" value="a"> a) 25 N</label>
+                    <label><input type="radio" name="q3" value="b"> b) 25√3 N</label>
+                    <label><input type="radio" name="q3" value="c"> c) 50 N</label>
+                    <label><input type="radio" name="q3" value="d"> d) 50√3 N</label>
+                </div>
+                
+                <!-- More Physics Questions -->
+                <div class="question">
+                    <p>4. The percentage error in measuring radius of sphere is 2%. The error in measurement of volume is: <span class="chapter">(Units & Measurements)</span></p>
+                    <label><input type="radio" name="q4" value="a"> a) 2%</label>
+                    <label><input type="radio" name="q4" value="b"> b) 4%</label>
+                    <label><input type="radio" name="q4" value="c"> c) 6%</label>
+                    <label><input type="radio" name="q4" value="d"> d) 8%</label>
+                </div>
+                
+                <div class="question">
+                    <p>5. A projectile has maximum range of 200 m. Its maximum height when launched at 30° is: <span class="chapter">(Kinematics)</span></p>
+                    <label><input type="radio" name="q5" value="a"> a) 25 m</label>
+                    <label><input type="radio" name="q5" value="b"> b) 50 m</label>
+                    <label><input type="radio" name="q5" value="c"> c) 75 m</label>
+                    <label><input type="radio" name="q5" value="d"> d) 100 m</label>
+                </div>
+            </div>
+            
+            <!-- Chemistry - Some Basic Concepts, Structure of Atom, Classification -->
+            <div class="subject-section">
+                <h3>Chemistry (10 Questions)</h3>
+                
+                <div class="question">
+                    <p>6. 1 amu is equal to: <span class="chapter">(Some Basic Concepts)</span></p>
+                    <label><input type="radio" name="q6" value="a"> a) 1.66 × 10<sup>-24</sup> g</label>
+                    <label><input type="radio" name="q6" value="b"> b) 1.66 × 10<sup>-27</sup> kg</label>
+                    <label><input type="radio" name="q6" value="c"> c) Both a and b</label>
+                    <label><input type="radio" name="q6" value="d"> d) Neither a nor b</label>
+                </div>
+                
+                <div class="question">
+                    <p>7. The ratio of radii of 2<sup>nd</sup> orbit of He<sup>+</sup> to 3<sup>rd</sup> orbit of Li<sup>2+</sup> is: <span class="chapter">(Structure of Atom)</span></p>
+                    <label><input type="radio" name="q7" value="a"> a) 2:3</label>
+                    <label><input type="radio" name="q7" value="b"> b) 3:2</label>
+                    <label><input type="radio" name="q7" value="c"> c) 4:9</label>
+                    <label><input type="radio" name="q7" value="d"> d) 9:4</label>
+                </div>
+                
+                <div class="question">
+                    <p>8. Which is not a Dobereiner's triad? <span class="chapter">(Classification)</span></p>
+                    <label><input type="radio" name="q8" value="a"> a) Li, Na, K</label>
+                    <label><input type="radio" name="q8" value="b"> b) Ca, Sr, Ba</label>
+                    <label><input type="radio" name="q8" value="c"> c) Cl, Br, I</label>
+                    <label><input type="radio" name="q8" value="d"> d) Fe, Co, Ni</label>
+                </div>
+                
+                <!-- More Chemistry Questions -->
+                <div class="question">
+                    <p>9. The number of significant figures in 0.0025 is: <span class="chapter">(Some Basic Concepts)</span></p>
+                    <label><input type="radio" name="q9" value="a"> a) 1</label>
+                    <label><input type="radio" name="q9" value="b"> b) 2</label>
+                    <label><input type="radio" name="q9" value="c"> c) 3</label>
+                    <label><input type="radio" name="q9" value="d"> d) 4</label>
+                </div>
+                
+                <div class="question">
+                    <p>10. The element with atomic number 56 belongs to: <span class="chapter">(Classification)</span></p>
+                    <label><input type="radio" name="q10" value="a"> a) s-block</label>
+                    <label><input type="radio" name="q10" value="b"> b) p-block</label>
+                    <label><input type="radio" name="q10" value="c"> c) d-block</label>
+                    <label><input type="radio" name="q10" value="d"> d) f-block</label>
+                </div>
+            </div>
+            
+            <!-- Mathematics - Sets, Relations & Functions, Trigonometry -->
+            <div class="subject-section">
+                <h3>Mathematics (10 Questions)</h3>
+                
+                <div class="question">
+                    <p>11. If A = {1, 2, 3}, then number of equivalence relations containing (1, 2) is: <span class="chapter">(Relations)</span></p>
+                    <label><input type="radio" name="q11" value="a"> a) 1</label>
+                    <label><input type="radio" name="q11" value="b"> b) 2</label>
+                    <label><input type="radio" name="q11" value="c"> c) 3</label>
+                    <label><input type="radio" name="q11" value="d"> d) 4</label>
+                </div>
+                
+                <div class="question">
+                    <p>12. The value of sin(π/14)sin(3π/14)sin(5π/14) is: <span class="chapter">(Trigonometry)</span></p>
+                    <label><input type="radio" name="q12" value="a"> a) 1/8</label>
+                    <label><input type="radio" name="q12" value="b"> b) 1/16</label>
+                    <label><input type="radio" name="q12" value="c"> c) √3/8</label>
+                    <label><input type="radio" name="q12" value="d"> d) √3/16</label>
+                </div>
+                
+                <div class="question">
+                    <p>13. If A and B are two sets such that A has 12 elements, B has 17 elements and A∪B has 21 elements, then A∩B has: <span class="chapter">(Sets)</span></p>
+                    <label><input type="radio" name="q13" value="a"> a) 5 elements</label>
+                    <label><input type="radio" name="q13" value="b"> b) 8 elements</label>
+                    <label><input type="radio" name="q13" value="c"> c) 12 elements</label>
+                    <label><input type="radio" name="q13" value="d"> d) 17 elements</label>
+                </div>
+                
+                <!-- More Mathematics Questions -->
+                <div class="question">
+                    <p>14. If f(x) = sin<sup>2</sup>x + sin<sup>2</sup>(x+π/3) + cosx cos(x+π/3), then f'(π/6) is: <span class="chapter">(Functions)</span></p>
+                    <label><input type="radio" name="q14" value="a"> a) 0</label>
+                    <label><input type="radio" name="q14" value="b"> b) 1</label>
+                    <label><input type="radio" name="q14" value="c"> c) -1</label>
+                    <label><input type="radio" name="q14" value="d"> d) 2</label>
+                </div>
+                
+                <div class="question">
+                    <p>15. The general solution of sinx + sin5x = sin3x is: <span class="chapter">(Trigonometry)</span></p>
+                    <label><input type="radio" name="q15" value="a"> a) nπ/3, n∈Z</label>
+                    <label><input type="radio" name="q15" value="b"> b) nπ/2, n∈Z</label>
+                    <label><input type="radio" name="q15" value="c"> c) nπ/4, n∈Z</label>
+                    <label><input type="radio" name="q15" value="d"> d) nπ/6, n∈Z</label>
+                </div>
+            </div>
+            
+            <button type="button" onclick="calculateScore()">Submit Test</button>
+            
+            <div id="result">
+                <h2>Test Results</h2>
+                <p id="score">Your score: 0/120</p>
+                <p id="breakdown"></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Answer key
+        const answerKey = {
+            // Physics (1-5)
+            q1: "b", q2: "a", q3: "a", q4: "c", q5: "a",
+            // Chemistry (6-10)
+            q6: "c", q7: "b", q8: "d", q9: "b", q10: "a",
+            // Mathematics (11-15)
+            q11: "b", q12: "a", q13: "b", q14: "a", q15: "a"
+        };
+
+        function calculateScore() {
+            let score = 0;
+            let correct = 0;
+            let wrong = 0;
+            
+            for (let i = 1; i <= 15; i++) {
+                const questionName = "q" + i;
+                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                
+                if (selectedOption) {
+                    if (selectedOption.value === answerKey[questionName]) {
+                        score += 4;
+                        correct++;
+                    } else {
+                        score -= 1;
+                        wrong++;
+                    }
+                }
+            }
+            
+            document.getElementById("score").textContent = `Your score: ${score}/60`;
+            document.getElementById("breakdown").innerHTML = 
+                `<span style="color:#00ff88">Correct: ${correct}</span> | 
+                 <span style="color:#ff5555">Wrong: ${wrong}</span> | 
+                 Unattempted: ${15 - correct - wrong}`;
+            
+            document.getElementById("result").style.display = "block";
+        }
+    </script>
+</body>
+</html>
