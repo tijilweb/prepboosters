@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 11 NEET Test - 15 Questions</title>
+    <style>
+        /* Same neon CSS styling as previous code */
+        body {
+            background-color: #0a0a1a;
+            color: #e0e0ff;
+            font-family: 'Arial', sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-container {
+            border: 2px solid #4d00ff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px #6a00ff, inset 0 0 10px #4d00ff;
+            background-color: rgba(10, 5, 30, 0.7);
+        }
+        h1, h2 {
+            color: #00f7ff;
+            text-shadow: 0 0 10px #00c8ff, 0 0 20px #0084ff;
+            text-align: center;
+        }
+        .subject-section {
+            margin: 25px 0;
+            padding: 15px;
+            border-left: 3px solid #ff00aa;
+            box-shadow: -5px 0 10px #ff00aa;
+        }
+        .question {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(30, 10, 50, 0.5);
+            border-radius: 5px;
+            border-bottom: 1px solid #4d00ff;
+        }
+        label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        label:hover {
+            color: #00f7ff;
+            text-shadow: 0 0 5px #00c8ff;
+        }
+        input[type="radio"] {
+            accent-color: #ff00aa;
+            margin-right: 10px;
+        }
+        button {
+            background: linear-gradient(45deg, #ff00aa, #4d00ff);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px #ff00aa;
+        }
+        button:hover {
+            box-shadow: 0 0 25px #ff00aa, 0 0 35px #4d00ff;
+            transform: scale(1.05);
+        }
+        #result {
+            display: none;
+            background-color: rgba(0, 0, 30, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #00f7ff;
+            box-shadow: 0 0 20px #00c8ff;
+            text-align: center;
+            margin-top: 30px;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #00c8ff; }
+            to { box-shadow: 0 0 20px #00c8ff, 0 0 30px #0084ff; }
+        }
+        #score {
+            font-size: 28px;
+            color: #00f7ff;
+            text-shadow: 0 0 10px #00c8ff;
+            margin-bottom: 20px;
+        }
+        .chapter {
+            font-size: 14px;
+            color: #ffaa00;
+            font-style: italic;
+        }
+        .correct-answer {
+            color: #00ff88;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #ff5555;
+            text-decoration: line-through;
+        }
+        .answer-details {
+            margin-top: 20px;
+            text-align: left;
+            border-top: 1px solid #4d00ff;
+            padding-top: 15px;
+        }
+        .question-review {
+            margin-bottom: 10px;
+            padding: 8px;
+            background: rgba(20, 10, 40, 0.6);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Class 11 NEET Test</h1>
+        <h2>15 Questions (5 Physics, 5 Chemistry, 5 Biology)</h2>
+        
+        <form id="testForm">
+            <!-- Physics (Class 11 NCERT Chapters) -->
+            <div class="subject-section" id="physics-section">
+                <h3>Physics</h3>
+                
+                <div class="question">
+                    <p>1. The dimensional formula for impulse is: <span class="chapter">(Units & Measurements)</span></p>
+                    <label><input type="radio" name="q1" value="a"> a) [MLT⁻²]</label>
+                    <label><input type="radio" name="q1" value="b"> b) [MLT⁻¹]</label>
+                    <label><input type="radio" name="q1" value="c"> c) [ML²T⁻¹]</label>
+                    <label><input type="radio" name="q1" value="d"> d) [M²LT⁻¹]</label>
+                </div>
+                
+                <div class="question">
+                    <p>2. A body falls freely from rest. The distance covered in the 5th second is: (g=10 m/s²) <span class="chapter">(Motion in Straight Line)</span></p>
+                    <label><input type="radio" name="q2" value="a"> a) 25 m</label>
+                    <label><input type="radio" name="q2" value="b"> b) 45 m</label>
+                    <label><input type="radio" name="q2" value="c"> c) 50 m</label>
+                    <label><input type="radio" name="q2" value="d"> d) 100 m</label>
+                </div>
+                
+                <div class="question">
+                    <p>3. Two masses 5 kg and 10 kg are connected by a massless string. The tension in the string when pulled with 60 N force is: <span class="chapter">(Laws of Motion)</span></p>
+                    <label><input type="radio" name="q3" value="a"> a) 20 N</label>
+                    <label><input type="radio" name="q3" value="b"> b) 30 N</label>
+                    <label><input type="radio" name="q3" value="c"> c) 40 N</label>
+                    <label><input type="radio" name="q3" value="d"> d) 60 N</label>
+                </div>
+                
+                <div class="question">
+                    <p>4. The work done in blowing a soap bubble of radius R is: (S=surface tension) <span class="chapter">(Mechanical Properties of Fluids)</span></p>
+                    <label><input type="radio" name="q4" value="a"> a) 8πR²S</label>
+                    <label><input type="radio" name="q4" value="b"> b) 4πR²S</label>
+                    <label><input type="radio" name="q4" value="c"> c) 2πR²S</label>
+                    <label><input type="radio" name="q4" value="d"> d) πR²S</label>
+                </div>
+                
+                <div class="question">
+                    <p>5. A simple pendulum has time period T. If its length is increased by 4 times, new time period becomes: <span class="chapter">(Oscillations)</span></p>
+                    <label><input type="radio" name="q5" value="a"> a) T/2</label>
+                    <label><input type="radio" name="q5" value="b"> b) 2T</label>
+                    <label><input type="radio" name="q5" value="c"> c) 4T</label>
+                    <label><input type="radio" name="q5" value="d"> d) T²</label>
+                </div>
+            </div>
+            
+            <!-- Chemistry (Class 11 NCERT Chapters) -->
+            <div class="subject-section" id="chemistry-section">
+                <h3>Chemistry</h3>
+                
+                <div class="question">
+                    <p>6. The number of moles in 11.2 L of CO₂ at STP is: <span class="chapter">(Some Basic Concepts)</span></p>
+                    <label><input type="radio" name="q6" value="a"> a) 0.5</label>
+                    <label><input type="radio" name="q6" value="b"> b) 1</label>
+                    <label><input type="radio" name="q6" value="c"> c) 2</label>
+                    <label><input type="radio" name="q6" value="d"> d) 11.2</label>
+                </div>
+                
+                <div class="question">
+                    <p>7. The energy of an electron in first Bohr orbit of H-atom is -13.6 eV. Its KE in this orbit is: <span class="chapter">(Structure of Atom)</span></p>
+                    <label><input type="radio" name="q7" value="a"> a) -13.6 eV</label>
+                    <label><input type="radio" name="q7" value="b"> b) 13.6 eV</label>
+                    <label><input type="radio" name="q7" value="c"> c) -27.2 eV</label>
+                    <label><input type="radio" name="q7" value="d"> d) 27.2 eV</label>
+                </div>
+                
+                <div class="question">
+                    <p>8. Which hybridisation is present in C₂H₄? <span class="chapter">(Chemical Bonding)</span></p>
+                    <label><input type="radio" name="q8" value="a"> a) sp</label>
+                    <label><input type="radio" name="q8" value="b"> b) sp²</label>
+                    <label><input type="radio" name="q8" value="c"> c) sp³</label>
+                    <label><input type="radio" name="q8" value="d"> d) dsp²</label>
+                </div>
+                
+                <div class="question">
+                    <p>9. The IUPAC name of CH₃-CH=CH-CHO is: <span class="chapter">(Organic Chemistry)</span></p>
+                    <label><input type="radio" name="q9" value="a"> a) But-2-en-1-al</label>
+                    <label><input type="radio" name="q9" value="b"> b) But-2-en-4-al</label>
+                    <label><input type="radio" name="q9" value="c"> c) But-3-en-1-al</label>
+                    <label><input type="radio" name="q9" value="d"> d) But-1-en-3-al</label>
+                </div>
+                
+                <div class="question">
+                    <p>10. Which is NOT a state function? <span class="chapter">(Thermodynamics)</span></p>
+                    <label><input type="radio" name="q10" value="a"> a) Enthalpy</label>
+                    <label><input type="radio" name="q10" value="b"> b) Internal Energy</label>
+                    <label><input type="radio" name="q10" value="c"> c) Work</label>
+                    <label><input type="radio" name="q10" value="d"> d) Entropy</label>
+                </div>
+            </div>
+            
+            <!-- Biology (Class 11 NCERT Chapters) -->
+            <div class="subject-section" id="biology-section">
+                <h3>Biology</h3>
+                
+                <div class="question">
+                    <p>11. Which is NOT a function of lysosomes? <span class="chapter">(Cell Biology)</span></p>
+                    <label><input type="radio" name="q11" value="a"> a) Intracellular digestion</label>
+                    <label><input type="radio" name="q11" value="b"> b) Autolysis</label>
+                    <label><input type="radio" name="q11" value="c"> c) Protein synthesis</label>
+                    <label><input type="radio" name="q11" value="d"> d) Phagocytosis</label>
+                </div>
+                
+                <div class="question">
+                    <p>12. The end product of glycolysis is: <span class="chapter">(Respiration)</span></p>
+                    <label><input type="radio" name="q12" value="a"> a) Acetyl CoA</label>
+                    <label><input type="radio" name="q12" value="b"> b) Pyruvate</label>
+                    <label><input type="radio" name="q12" value="c"> c) Glucose-6-phosphate</label>
+                    <label><input type="radio" name="q12" value="d"> d) Citric acid</label>
+                </div>
+                
+                <div class="question">
+                    <p>13. The Bowman's capsule is part of: <span class="chapter">(Excretory System)</span></p>
+                    <label><input type="radio" name="q13" value="a"> a) Neuron</label>
+                    <label><input type="radio" name="q13" value="b"> b) Nephron</label>
+                    <label><input type="radio" name="q13" value="c"> c) Alveoli</label>
+                    <label><input type="radio" name="q13" value="d"> d) Villi</label>
+                </div>
+                
+                <div class="question">
+                    <p>14. Which plant hormone promotes cell division? <span class="chapter">(Plant Growth)</span></p>
+                    <label><input type="radio" name="q14" value="a"> a) Auxin</label>
+                    <label><input type="radio" name="q14" value="b"> b) Gibberellin</label>
+                    <label><input type="radio" name="q14" value="c"> c) Cytokinin</label>
+                    <label><input type="radio" name="q14" value="d"> d) Abscisic acid</label>
+                </div>
+                
+                <div class="question">
+                    <p>15. The contractile protein of muscle is: <span class="chapter">(Locomotion)</span></p>
+                    <label><input type="radio" name="q15" value="a"> a) Actin</label>
+                    <label><input type="radio" name="q15" value="b"> b) Collagen</label>
+                    <label><input type="radio" name="q15" value="c"> c) Myosin</label>
+                    <label><input type="radio" name="q15" value="d"> d) Both a and c</label>
+                </div>
+            </div>
+            
+            <button type="button" onclick="calculateScore()">Submit Test</button>
+            
+            <div id="result">
+                <h2>Test Results</h2>
+                <p id="score">Your score: 0/60</p>
+                <div id="breakdown"></div>
+                <div class="answer-details" id="answerDetails"></div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Answer key with explanations (Class 11 NCERT based)
+        const answerKey = {
+            // Physics
+            q1: {correct: "b", explanation: "Impulse = Force × Time = [MLT⁻²][T] = [MLT⁻¹]"},
+            q2: {correct: "b", explanation: "Distance in nth second = g/2(2n-1) ⇒ 5th second = 5(9) = 45 m"},
+            q3: {correct: "c", explanation: "Tension = (m₂/(m₁+m₂))×F = (10/15)×60 = 40 N"},
+            q4: {correct: "a", explanation: "Work = Surface tension × ΔArea = S × (2×4πR²) = 8πR²S (2 surfaces)"},
+            q5: {correct: "b", explanation: "T ∝ √L ⇒ T' = T√4 = 2T"},
+            // Chemistry
+            q6: {correct: "a", explanation: "At STP, 22.4 L = 1 mole ⇒ 11.2 L = 0.5 mole"},
+            q7: {correct: "b", explanation: "KE = -TE = -(-13.6) = 13.6 eV"},
+            q8: {correct: "b", explanation: "C₂H₄ has sp² hybridisation (double bond)"},
+            q9: {correct: "a", explanation: "IUPAC name is But-2-en-1-al (aldehyde gets priority)"},
+            q10: {correct: "c", explanation: "Work is path dependent, not a state function"},
+            // Biology
+            q11: {correct: "c", explanation: "Lysosomes don't synthesize proteins (done by ribosomes)"},
+            q12: {correct: "b", explanation: "Glycolysis ends with pyruvate formation"},
+            q13: {correct: "b", explanation: "Bowman's capsule is the starting part of nephron"},
+            q14: {correct: "c", explanation: "Cytokinins promote cell division (cytokinesis)"},
+            q15: {correct: "d", explanation: "Both actin and myosin are contractile proteins"}
+        };
+
+        function calculateScore() {
+            let score = 0;
+            let correct = 0;
+            let wrong = 0;
+            let unanswered = 0;
+            let answerDetailsHTML = "<h3>Question-wise Analysis:</h3>";
+            
+            // Hide all questions
+            document.getElementById("physics-section").style.display = "none";
+            document.getElementById("chemistry-section").style.display = "none";
+            document.getElementById("biology-section").style.display = "none";
+            
+            // Calculate score and prepare answer details
+            for (let i = 1; i <= 15; i++) {
+                const questionName = "q" + i;
+                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                const correctAnswer = answerKey[questionName].correct;
+                
+                answerDetailsHTML += `<div class="question-review">`;
+                answerDetailsHTML += `<p><strong>Q${i}:</strong> ${document.querySelector(`input[name="${questionName}"]`).parentElement.parentElement.querySelector('p').textContent}</p>`;
+                
+                if (selectedOption) {
+                    if (selectedOption.value === correctAnswer) {
+                        score += 4;
+                        correct++;
+                        answerDetailsHTML += `<p class="correct-answer">✓ Your answer (${selectedOption.value}) is correct (+4)</p>`;
+                    } else {
+                        score -= 1;
+                        wrong++;
+                        answerDetailsHTML += `<p class="wrong-answer">✗ Your answer (${selectedOption.value}) is wrong (-1)</p>`;
+                        answerDetailsHTML += `<p class="correct-answer">Correct answer: ${correctAnswer}</p>`;
+                    }
+                } else {
+                    unanswered++;
+                    answerDetailsHTML += `<p>Not attempted (0)</p>`;
+                    answerDetailsHTML += `<p class="correct-answer">Correct answer: ${correctAnswer}</p>`;
+                }
+                
+                answerDetailsHTML += `<p><em>Explanation:</em> ${answerKey[questionName].explanation}</p>`;
+                answerDetailsHTML += `</div>`;
+            }
+            
+            document.getElementById("score").textContent = `Your score: ${score}/60`;
+            document.getElementById("breakdown").innerHTML = 
+                `<p><span style="color:#00ff88">Correct: ${correct}</span> | 
+                 <span style="color:#ff5555">Wrong: ${wrong}</span> | 
+                 Unattempted: ${unanswered}</p>`;
+            
+            document.getElementById("answerDetails").innerHTML = answerDetailsHTML;
+            document.getElementById("result").style.display = "block";
+            
+            // Scroll to results
+            document.getElementById("result").scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
