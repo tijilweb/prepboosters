@@ -9,70 +9,89 @@
      crossorigin="anonymous"></script>
   <style>
     :root {
-      --dark-bg: #121212;
-      --darker-bg: #1e1e1e;
-      --light-text: #ffffff;
-      --accent: #bb86fc;
-      --accent-dark: #3700b3;
-      --card-bg: #2d2d2d;
-    }
+    --dark-bg: #0a0a1a;
+    --darker-bg: #050515;
+    --light-text: #e0e0ff;
+    --accent: #6a00ff;
+    --accent-dark: #4d00ff;
+    --accent-light: #ff00aa;
+    --card-bg: rgba(30, 10, 50, 0.7);
+    --neon-blue: #00f7ff;
+    --neon-pink: #ff00aa;
+    --neon-purple: #4d00ff;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
 
-    body {
-      background-color: var(--dark-bg);
-      color: var(--light-text);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(77, 0, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 0, 170, 0.1) 0%, transparent 50%);
+}
 
-    .card {
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      width: 90%;
-      max-width: 400px;
-      border: 1px solid #333;
-      transition: all 0.3s ease;
-    }
+.card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 20px var(--neon-purple),
+                inset 0 0 10px rgba(106, 0, 255, 0.3);
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid var(--neon-purple);
+    transition: all 0.3s ease;
+}
 
-    .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    }
+.card:hover {
+    border-color: var(--neon-blue);
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px var(--neon-pink),
+                0 0 40px rgba(106, 0, 255, 0.4),
+                inset 0 0 15px rgba(0, 247, 255, 0.2);
+}
 
-    .card h3 {
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
+.card h3 {
+    color: var(--neon-blue);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 8px var(--neon-blue),
+                 0 0 16px rgba(0, 247, 255, 0.3);
+}
 
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: black;
-      padding: 12px 24px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      margin-top: 1rem;
-    }
+.btn {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 0 15px var(--neon-pink),
+                0 0 25px rgba(255, 0, 170, 0.3);
+    border: none;
+    cursor: pointer;
+}
 
-    .btn:hover {
-      background: #03dac6;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    }
+.btn:hover {
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 25px var(--neon-pink),
+                0 0 35px var(--neon-purple),
+                0 0 45px rgba(0, 247, 255, 0.4);
+    text-shadow: 0 0 5px white;
+}
   </style>
 </head>
 <body>
@@ -94,6 +113,7 @@
   </script>
 </body>
 </html>
+
 
 
 
