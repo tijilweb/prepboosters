@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JEE Advanced Mini Test - Class 11</title>
+    <title>JEE Advanced Mini Test - 15 Questions</title>
     <style>
         body {
             background-color: #0a0a1a;
@@ -78,102 +78,126 @@
             box-shadow: 0 0 20px #00c8ff;
             text-align: center;
             margin-top: 30px;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #00c8ff; }
+            to { box-shadow: 0 0 20px #00c8ff, 0 0 30px #0084ff; }
         }
         #score {
-            font-size: 24px;
+            font-size: 28px;
             color: #00f7ff;
             text-shadow: 0 0 10px #00c8ff;
+            margin-bottom: 20px;
         }
         .chapter {
             font-size: 14px;
             color: #ffaa00;
             font-style: italic;
         }
+        .correct-answer {
+            color: #00ff88;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #ff5555;
+            text-decoration: line-through;
+        }
+        .answer-details {
+            margin-top: 20px;
+            text-align: left;
+            border-top: 1px solid #4d00ff;
+            padding-top: 15px;
+        }
+        .question-review {
+            margin-bottom: 10px;
+            padding: 8px;
+            background: rgba(20, 10, 40, 0.6);
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="test-container">
         <h1>JEE Advanced Mini Test</h1>
-        <h2>Class 11 - First 3 Chapters</h2>
+        <h2>15 Questions (5 from each subject)</h2>
         
         <form id="testForm">
-            <!-- Physics - Units & Measurements, Kinematics, Laws of Motion -->
-            <div class="subject-section">
+            <!-- Physics Section -->
+            <div class="subject-section" id="physics-section">
                 <h3>Physics</h3>
                 
                 <div class="question">
-                    <p>1. The dimensional formula for impulse is: <span class="chapter">(Units & Measurements)</span></p>
-                    <label><input type="radio" name="q1" value="a"> a) [MLT<sup>-2</sup>]</label>
-                    <label><input type="radio" name="q1" value="b"> b) [MLT<sup>-1</sup>]</label>
-                    <label><input type="radio" name="q1" value="c"> c) [ML<sup>2</sup>T<sup>-1</sup>]</label>
-                    <label><input type="radio" name="q1" value="d"> d) [M<sup>2</sup>LT<sup>-1</sup>]</label>
+                    <p>1. A particle moves along x-axis with acceleration a = 6(t - 1). If it starts from rest at t=0, velocity at t=2s is: <span class="chapter">(Kinematics)</span></p>
+                    <label><input type="radio" name="q1" value="a"> a) 0 m/s</label>
+                    <label><input type="radio" name="q1" value="b"> b) 1 m/s</label>
+                    <label><input type="radio" name="q1" value="c"> c) 3 m/s</label>
+                    <label><input type="radio" name="q1" value="d"> d) 6 m/s</label>
                 </div>
                 
                 <div class="question">
-                    <p>2. A particle moves along x-axis with acceleration a = 6(t - 1), where t is in seconds. If it starts from rest at t=0, then its velocity at t=2s is: <span class="chapter">(Kinematics)</span></p>
-                    <label><input type="radio" name="q2" value="a"> a) 0 m/s</label>
-                    <label><input type="radio" name="q2" value="b"> b) 1 m/s</label>
-                    <label><input type="radio" name="q2" value="c"> c) 2 m/s</label>
-                    <label><input type="radio" name="q2" value="d"> d) 3 m/s</label>
+                    <p>2. A block of mass 5 kg is suspended by two strings at 30° and 60°. Tension at 60° is: <span class="chapter">(Laws of Motion)</span></p>
+                    <label><input type="radio" name="q2" value="a"> a) 25 N</label>
+                    <label><input type="radio" name="q2" value="b"> b) 25√3 N</label>
+                    <label><input type="radio" name="q2" value="c"> c) 50 N</label>
+                    <label><input type="radio" name="q2" value="d"> d) 50√3 N</label>
                 </div>
                 
                 <div class="question">
-                    <p>3. A block of mass 5 kg is suspended by two strings making angles 30° and 60° with the ceiling. The tension in the string at 60° is: <span class="chapter">(Laws of Motion)</span></p>
-                    <label><input type="radio" name="q3" value="a"> a) 25 N</label>
-                    <label><input type="radio" name="q3" value="b"> b) 25√3 N</label>
-                    <label><input type="radio" name="q3" value="c"> c) 50 N</label>
-                    <label><input type="radio" name="q3" value="d"> d) 50√3 N</label>
-                </div>
-                
-                <!-- More Physics Questions -->
-                <div class="question">
-                    <p>4. The percentage error in measuring radius of sphere is 2%. The error in measurement of volume is: <span class="chapter">(Units & Measurements)</span></p>
-                    <label><input type="radio" name="q4" value="a"> a) 2%</label>
-                    <label><input type="radio" name="q4" value="b"> b) 4%</label>
-                    <label><input type="radio" name="q4" value="c"> c) 6%</label>
-                    <label><input type="radio" name="q4" value="d"> d) 8%</label>
+                    <p>3. The dimensional formula for surface tension is: <span class="chapter">(Units & Measurements)</span></p>
+                    <label><input type="radio" name="q3" value="a"> a) [MLT<sup>-2</sup>]</label>
+                    <label><input type="radio" name="q3" value="b"> b) [ML<sup>0</sup>T<sup>-2</sup>]</label>
+                    <label><input type="radio" name="q3" value="c"> c) [ML<sup>-1</sup>T<sup>-2</sup>]</label>
+                    <label><input type="radio" name="q3" value="d"> d) [M<sup>2</sup>LT<sup>-1</sup>]</label>
                 </div>
                 
                 <div class="question">
-                    <p>5. A projectile has maximum range of 200 m. Its maximum height when launched at 30° is: <span class="chapter">(Kinematics)</span></p>
-                    <label><input type="radio" name="q5" value="a"> a) 25 m</label>
-                    <label><input type="radio" name="q5" value="b"> b) 50 m</label>
-                    <label><input type="radio" name="q5" value="c"> c) 75 m</label>
-                    <label><input type="radio" name="q5" value="d"> d) 100 m</label>
+                    <p>4. A projectile has maximum range 200m. Its maximum height at 30° launch is: <span class="chapter">(Kinematics)</span></p>
+                    <label><input type="radio" name="q4" value="a"> a) 25 m</label>
+                    <label><input type="radio" name="q4" value="b"> b) 50 m</label>
+                    <label><input type="radio" name="q4" value="c"> c) 75 m</label>
+                    <label><input type="radio" name="q4" value="d"> d) 100 m</label>
+                </div>
+                
+                <div class="question">
+                    <p>5. A capillary tube of radius r has water rise to height h. If radius becomes 2r, mass of water risen becomes: <span class="chapter">(Properties of Matter)</span></p>
+                    <label><input type="radio" name="q5" value="a"> a) Same</label>
+                    <label><input type="radio" name="q5" value="b"> b) Half</label>
+                    <label><input type="radio" name="q5" value="c"> c) Double</label>
+                    <label><input type="radio" name="q5" value="d"> d) Four times</label>
                 </div>
             </div>
             
-            <!-- Chemistry - Some Basic Concepts, Structure of Atom, Classification -->
-            <div class="subject-section">
+            <!-- Chemistry Section -->
+            <div class="subject-section" id="chemistry-section">
                 <h3>Chemistry</h3>
                 
                 <div class="question">
-                    <p>6. 1 amu is equal to: <span class="chapter">(Some Basic Concepts)</span></p>
-                    <label><input type="radio" name="q6" value="a"> a) 1.66 × 10<sup>-24</sup> g</label>
-                    <label><input type="radio" name="q6" value="b"> b) 1.66 × 10<sup>-27</sup> kg</label>
-                    <label><input type="radio" name="q6" value="c"> c) Both a and b</label>
-                    <label><input type="radio" name="q6" value="d"> d) Neither a nor b</label>
+                    <p>6. The ratio of radii of 2nd orbit of He⁺ to 3rd orbit of Li²⁺ is: <span class="chapter">(Atomic Structure)</span></p>
+                    <label><input type="radio" name="q6" value="a"> a) 2:3</label>
+                    <label><input type="radio" name="q6" value="b"> b) 3:2</label>
+                    <label><input type="radio" name="q6" value="c"> c) 4:9</label>
+                    <label><input type="radio" name="q6" value="d"> d) 9:4</label>
                 </div>
                 
                 <div class="question">
-                    <p>7. The ratio of radii of 2<sup>nd</sup> orbit of He<sup>+</sup> to 3<sup>rd</sup> orbit of Li<sup>2+</sup> is: <span class="chapter">(Structure of Atom)</span></p>
-                    <label><input type="radio" name="q7" value="a"> a) 2:3</label>
-                    <label><input type="radio" name="q7" value="b"> b) 3:2</label>
-                    <label><input type="radio" name="q7" value="c"> c) 4:9</label>
-                    <label><input type="radio" name="q7" value="d"> d) 9:4</label>
+                    <p>7. Which is NOT a Dobereiner's triad? <span class="chapter">(Periodic Table)</span></p>
+                    <label><input type="radio" name="q7" value="a"> a) Li, Na, K</label>
+                    <label><input type="radio" name="q7" value="b"> b) Ca, Sr, Ba</label>
+                    <label><input type="radio" name="q7" value="c"> c) Cl, Br, I</label>
+                    <label><input type="radio" name="q7" value="d"> d) Fe, Co, Ni</label>
                 </div>
                 
                 <div class="question">
-                    <p>8. Which is not a Dobereiner's triad? <span class="chapter">(Classification)</span></p>
-                    <label><input type="radio" name="q8" value="a"> a) Li, Na, K</label>
-                    <label><input type="radio" name="q8" value="b"> b) Ca, Sr, Ba</label>
-                    <label><input type="radio" name="q8" value="c"> c) Cl, Br, I</label>
-                    <label><input type="radio" name="q8" value="d"> d) Fe, Co, Ni</label>
+                    <p>8. The IUPAC name of [Co(NH₃)₅Cl]Cl₂ is: <span class="chapter">(Coordination Compounds)</span></p>
+                    <label><input type="radio" name="q8" value="a"> a) Pentaamminechlorocobalt(III) chloride</label>
+                    <label><input type="radio" name="q8" value="b"> b) Pentaamminechlorocobalt(II) chloride</label>
+                    <label><input type="radio" name="q8" value="c"> c) Pentachloraminecobalt(III) chloride</label>
+                    <label><input type="radio" name="q8" value="d"> d) Pentaamminecobalt(III) dichloride</label>
                 </div>
                 
-                <!-- More Chemistry Questions -->
                 <div class="question">
-                    <p>9. The number of significant figures in 0.0025 is: <span class="chapter">(Some Basic Concepts)</span></p>
+                    <p>9. Number of significant figures in 0.0025 is: <span class="chapter">(Basic Concepts)</span></p>
                     <label><input type="radio" name="q9" value="a"> a) 1</label>
                     <label><input type="radio" name="q9" value="b"> b) 2</label>
                     <label><input type="radio" name="q9" value="c"> c) 3</label>
@@ -181,7 +205,7 @@
                 </div>
                 
                 <div class="question">
-                    <p>10. The element with atomic number 56 belongs to: <span class="chapter">(Classification)</span></p>
+                    <p>10. The element with atomic number 56 belongs to: <span class="chapter">(Periodic Table)</span></p>
                     <label><input type="radio" name="q10" value="a"> a) s-block</label>
                     <label><input type="radio" name="q10" value="b"> b) p-block</label>
                     <label><input type="radio" name="q10" value="c"> c) d-block</label>
@@ -189,12 +213,12 @@
                 </div>
             </div>
             
-            <!-- Mathematics - Sets, Relations & Functions, Trigonometry -->
-            <div class="subject-section">
+            <!-- Mathematics Section -->
+            <div class="subject-section" id="maths-section">
                 <h3>Mathematics</h3>
                 
                 <div class="question">
-                    <p>11. If A = {1, 2, 3}, then number of equivalence relations containing (1, 2) is: <span class="chapter">(Relations)</span></p>
+                    <p>11. Number of equivalence relations containing (1,2) on set A={1,2,3} is: <span class="chapter">(Relations)</span></p>
                     <label><input type="radio" name="q11" value="a"> a) 1</label>
                     <label><input type="radio" name="q11" value="b"> b) 2</label>
                     <label><input type="radio" name="q11" value="c"> c) 3</label>
@@ -202,7 +226,7 @@
                 </div>
                 
                 <div class="question">
-                    <p>12. The value of sin(π/14)sin(3π/14)sin(5π/14) is: <span class="chapter">(Trigonometry)</span></p>
+                    <p>12. Value of sin(π/14)sin(3π/14)sin(5π/14) is: <span class="chapter">(Trigonometry)</span></p>
                     <label><input type="radio" name="q12" value="a"> a) 1/8</label>
                     <label><input type="radio" name="q12" value="b"> b) 1/16</label>
                     <label><input type="radio" name="q12" value="c"> c) √3/8</label>
@@ -210,28 +234,27 @@
                 </div>
                 
                 <div class="question">
-                    <p>13. If A and B are two sets such that A has 12 elements, B has 17 elements and A∪B has 21 elements, then A∩B has: <span class="chapter">(Sets)</span></p>
-                    <label><input type="radio" name="q13" value="a"> a) 5 elements</label>
-                    <label><input type="radio" name="q13" value="b"> b) 8 elements</label>
-                    <label><input type="radio" name="q13" value="c"> c) 12 elements</label>
-                    <label><input type="radio" name="q13" value="d"> d) 17 elements</label>
-                </div>
-                
-                <!-- More Mathematics Questions -->
-                <div class="question">
-                    <p>14. If f(x) = sin<sup>2</sup>x + sin<sup>2</sup>(x+π/3) + cosx cos(x+π/3), then f'(π/6) is: <span class="chapter">(Functions)</span></p>
-                    <label><input type="radio" name="q14" value="a"> a) 0</label>
-                    <label><input type="radio" name="q14" value="b"> b) 1</label>
-                    <label><input type="radio" name="q14" value="c"> c) -1</label>
-                    <label><input type="radio" name="q14" value="d"> d) 2</label>
+                    <p>13. If n(A)=12, n(B)=17, n(A∪B)=21, then n(A∩B) is: <span class="chapter">(Sets)</span></p>
+                    <label><input type="radio" name="q13" value="a"> a) 5</label>
+                    <label><input type="radio" name="q13" value="b"> b) 8</label>
+                    <label><input type="radio" name="q13" value="c"> c) 12</label>
+                    <label><input type="radio" name="q13" value="d"> d) 17</label>
                 </div>
                 
                 <div class="question">
-                    <p>15. The general solution of sinx + sin5x = sin3x is: <span class="chapter">(Trigonometry)</span></p>
-                    <label><input type="radio" name="q15" value="a"> a) nπ/3, n∈Z</label>
-                    <label><input type="radio" name="q15" value="b"> b) nπ/2, n∈Z</label>
-                    <label><input type="radio" name="q15" value="c"> c) nπ/4, n∈Z</label>
-                    <label><input type="radio" name="q15" value="d"> d) nπ/6, n∈Z</label>
+                    <p>14. General solution of sinx + sin5x = sin3x is: <span class="chapter">(Trigonometry)</span></p>
+                    <label><input type="radio" name="q14" value="a"> a) nπ/3</label>
+                    <label><input type="radio" name="q14" value="b"> b) nπ/2</label>
+                    <label><input type="radio" name="q14" value="c"> c) nπ/4</label>
+                    <label><input type="radio" name="q14" value="d"> d) nπ/6</label>
+                </div>
+                
+                <div class="question">
+                    <p>15. If f(x) = sin²x + sin²(x+π/3) + cosx cos(x+π/3), then f'(π/6) is: <span class="chapter">(Functions)</span></p>
+                    <label><input type="radio" name="q15" value="a"> a) 0</label>
+                    <label><input type="radio" name="q15" value="b"> b) 1</label>
+                    <label><input type="radio" name="q15" value="c"> c) -1</label>
+                    <label><input type="radio" name="q15" value="d"> d) 2</label>
                 </div>
             </div>
             
@@ -239,52 +262,87 @@
             
             <div id="result">
                 <h2>Test Results</h2>
-                <p id="score">Your score: 0/120</p>
-                <p id="breakdown"></p>
+                <p id="score">Your score: 0/60</p>
+                <div id="breakdown"></div>
+                <div class="answer-details" id="answerDetails"></div>
             </div>
         </form>
     </div>
 
     <script>
-        // Answer key
+        // Answer key with explanations
         const answerKey = {
-            // Physics (1-5)
-            q1: "b", q2: "a", q3: "a", q4: "c", q5: "a",
-            // Chemistry (6-10)
-            q6: "c", q7: "b", q8: "d", q9: "b", q10: "a",
-            // Mathematics (11-15)
-            q11: "b", q12: "a", q13: "b", q14: "a", q15: "a"
+            q1: {correct: "a", explanation: "Integrate a = 6(t-1) to get v = 3(t-1)² + C. At t=0, v=0 ⇒ C=-3. At t=2, v=0 m/s"},
+            q2: {correct: "a", explanation: "Vertical equilibrium: T₁sin30° + T₂sin60° = 50N. Horizontal: T₁cos30° = T₂cos60°. Solving gives T₂=25N"},
+            q3: {correct: "b", explanation: "Surface tension = Force/Length = [MLT⁻²]/[L] = [ML⁰T⁻²]"},
+            q4: {correct: "b", explanation: "Rmax = u²/g = 200m ⇒ u²=2000. H at 30° = (u²sin²30°)/2g = (2000×0.25)/20 = 50m"},
+            q5: {correct: "c", explanation: "Mass ∝ r×h. Since h ∝ 1/r, mass becomes double when radius doubles"},
+            q6: {correct: "b", explanation: "Radius r ∝ n²/Z ⇒ (4/2):(9/3) = 3:2"},
+            q7: {correct: "d", explanation: "Fe, Co, Ni don't show triadic relationship in atomic masses"},
+            q8: {correct: "a", explanation: "Cobalt is in +3 oxidation state with 5 NH₃ and 1 Cl ligand"},
+            q9: {correct: "b", explanation: "Only 2 and 5 are significant in 0.0025"},
+            q10: {correct: "a", explanation: "Atomic number 56 is Ba which is in s-block (6th period)"},
+            q11: {correct: "b", explanation: "Two possible equivalence relations: {(1,1),(2,2),(3,3),(1,2),(2,1)} and universal relation"},
+            q12: {correct: "a", explanation: "Using identity sinx sin(60°-x) sin(60°+x) = sin3x/4 with x=π/14 gives 1/8"},
+            q13: {correct: "b", explanation: "n(A∩B) = n(A)+n(B)-n(A∪B) = 12+17-21 = 8"},
+            q14: {correct: "a", explanation: "Using sinA+sinB=2sin((A+B)/2)cos((A-B)/2) gives solutions at x=nπ/3"},
+            q15: {correct: "a", explanation: "f(x) simplifies to 5/4 + (cos2x)/2 ⇒ f'(x)=-sin2x ⇒ f'(π/6)=-sin(π/3)=-√3/2"}
         };
 
         function calculateScore() {
             let score = 0;
             let correct = 0;
             let wrong = 0;
+            let unanswered = 0;
+            let answerDetailsHTML = "<h3>Question-wise Analysis:</h3>";
             
+            // Hide all questions
+            document.getElementById("physics-section").style.display = "none";
+            document.getElementById("chemistry-section").style.display = "none";
+            document.getElementById("maths-section").style.display = "none";
+            
+            // Calculate score and prepare answer details
             for (let i = 1; i <= 15; i++) {
                 const questionName = "q" + i;
                 const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                const correctAnswer = answerKey[questionName].correct;
+                
+                answerDetailsHTML += `<div class="question-review">`;
+                answerDetailsHTML += `<p><strong>Q${i}:</strong> ${document.querySelector(`input[name="${questionName}"]`).parentElement.parentElement.querySelector('p').textContent}</p>`;
                 
                 if (selectedOption) {
-                    if (selectedOption.value === answerKey[questionName]) {
+                    if (selectedOption.value === correctAnswer) {
                         score += 4;
                         correct++;
+                        answerDetailsHTML += `<p class="correct-answer">✓ Your answer (${selectedOption.value}) is correct (+4)</p>`;
                     } else {
                         score -= 1;
                         wrong++;
+                        answerDetailsHTML += `<p class="wrong-answer">✗ Your answer (${selectedOption.value}) is wrong (-1)</p>`;
+                        answerDetailsHTML += `<p class="correct-answer">Correct answer: ${correctAnswer}</p>`;
                     }
+                } else {
+                    unanswered++;
+                    answerDetailsHTML += `<p>Not attempted (0)</p>`;
+                    answerDetailsHTML += `<p class="correct-answer">Correct answer: ${correctAnswer}</p>`;
                 }
+                
+                answerDetailsHTML += `<p><em>Explanation:</em> ${answerKey[questionName].explanation}</p>`;
+                answerDetailsHTML += `</div>`;
             }
             
             document.getElementById("score").textContent = `Your score: ${score}/60`;
             document.getElementById("breakdown").innerHTML = 
-                `<span style="color:#00ff88">Correct: ${correct}</span> | 
+                `<p><span style="color:#00ff88">Correct: ${correct}</span> | 
                  <span style="color:#ff5555">Wrong: ${wrong}</span> | 
-                 Unattempted: ${15 - correct - wrong}`;
+                 Unattempted: ${unanswered}</p>`;
             
+            document.getElementById("answerDetails").innerHTML = answerDetailsHTML;
             document.getElementById("result").style.display = "block";
+            
+            // Scroll to results
+            document.getElementById("result").scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
-
 </html>
