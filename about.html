@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About PrepBoosters | Cyberpunk Neon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050515;
+            --neon-purple: #6a00ff;
+            --neon-cyan: #00f7ff;
+            --neon-pink: #ff00aa;
+            --neon-blue: #4d00ff;
+            --text-glow: 0 0 10px var(--neon-purple), 
+                        0 0 20px rgba(106, 0, 255, 0.5);
+            --cyan-glow: 0 0 10px var(--neon-cyan),
+                        0 0 20px rgba(0, 247, 255, 0.5);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #e0e0ff;
+            font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(106, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 0, 170, 0.15) 0%, transparent 50%),
+                linear-gradient(rgba(10, 10, 26, 0.9), rgba(10, 10, 26, 0.9));
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header h1 {
+            color: var(--neon-purple);
+            font-size: 3rem;
+            text-shadow: var(--text-glow);
+            margin-bottom: 1rem;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .header p.tagline {
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            text-shadow: var(--cyan-glow);
+            margin-bottom: 2rem;
+        }
+
+        /* Content Button in Header */
+        .header-btn-container {
+            margin-top: 2rem;
+        }
+
+        .content-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            box-shadow: 0 0 20px var(--neon-pink),
+                        0 0 40px rgba(106, 0, 255, 0.5);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .content-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 30px var(--neon-pink),
+                        0 0 60px var(--neon-purple);
+            text-shadow: 0 0 10px white;
+        }
+
+        .content-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .content-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Rest of your existing CSS remains the same */
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border-left: 3px solid var(--neon-pink);
+            box-shadow: -5px 0 15px rgba(255, 0, 170, 0.3);
+            background: rgba(30, 10, 50, 0.3);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .section h2 {
+            color: var(--neon-cyan);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-shadow: var(--cyan-glow);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section h2::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .neon-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .neon-list li {
+            margin-bottom: 1rem;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .neon-list li::before {
+            content: '◈';
+            position: absolute;
+            left: 0;
+            color: var(--neon-purple);
+            text-shadow: 0 0 5px var(--neon-purple);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 5px;
+            background: rgba(106, 0, 255, 0.1);
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 10px rgba(106, 0, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--neon-purple);
+        }
+
+        .team-member .emoji {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .team-member h3 {
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        @keyframes pulse {
+            0%, 100% { text-shadow: var(--text-glow); }
+            50% { text-shadow: 0 0 15px var(--neon-purple),
+                        0 0 30px rgba(106, 0, 255, 0.8); }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(10, 10, 26, 0) 50%, 
+                rgba(0, 247, 255, 0.05) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.3;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p.tagline {
+                font-size: 1.2rem;
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .content-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌟 About PrepBoosters 🌟</h1>
+        <p class="tagline">"Boost your preparation, unlock your potential." ✨</p>
+        
+        <!-- Content Button in Header -->
+        <div class="header-btn-container">
+            <a href="main.html" class="content-btn">Explore Our Content</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Our Beginning</h2>
+        <p>PrepBoosters began with a vision to make exam preparation smarter, disciplined, and collaborative. Our goal is to help students excel in both board and competitive exams with the right guidance, free resources, and a motivating community.</p>
+    </div>
+
+    <div class="section">
+        <h2>What We Do</h2>
+        <ul class="neon-list">
+            <li>📘 Support CBSE & ISC learners</li>
+            <li>📕 Guide JEE aspirants</li>
+            <li>📙 Mentor NEET dreamers</li>
+            <li>📗 Share strategies, notes & smart study techniques</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Our Beliefs</h2>
+        <ul class="neon-list">
+            <li>✅ Consistency creates achievers</li>
+            <li>✅ Peer-to-peer learning makes preparation stronger</li>
+            <li>✅ Quality education should be accessible to everyone</li>
+            <li>✅ Respect and motivation are the foundation of growth</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <span class="emoji">👨‍💼</span>
+                <h3>Tijil</h3>
+            </div>
+            <div class="team-member">
+                <span class="emoji">🧠</span>
+                <h3>Ayush</h3>
+            </div>
+            <div class="team-member">
+                <span class="emoji">🔬</span>
+                <h3>Harshit</h3>
+            </div>
+            <div class="team-member">
+                <span class="emoji">🎓</span>
+                <h3>Kushal</h3>
+            </div>
+            <div class="team-member">
+                <span class="emoji">🚀</span>
+                <h3>Dev</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.body;
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 5 + 1;
+                const posX = Math.random() * window.innerWidth;
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                const opacity = Math.random() * 0.5 + 0.1;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.bottom = `-10px`;
+                particle.style.opacity = opacity;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                const colors = ['var(--neon-purple)', 'var(--neon-cyan)', 'var(--neon-pink)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(particle);
+            }
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                .particle {
+                    position: fixed;
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: -1;
+                    filter: blur(1px);
+                    animation: float linear infinite;
+                }
+                
+                @keyframes float {
+                    to {
+                        transform: translateY(-100vh);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
