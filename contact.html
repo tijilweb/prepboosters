@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | PrepBoosters</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050515;
+            --neon-purple: #6a00ff;
+            --neon-cyan: #00f7ff;
+            --neon-pink: #ff00aa;
+            --neon-blue: #4d00ff;
+            --text-glow: 0 0 10px var(--neon-purple), 
+                        0 0 20px rgba(106, 0, 255, 0.5);
+            --cyan-glow: 0 0 10px var(--neon-cyan),
+                        0 0 20px rgba(0, 247, 255, 0.5);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #e0e0ff;
+            font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(106, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 0, 170, 0.15) 0%, transparent 50%),
+                linear-gradient(rgba(10, 10, 26, 0.9), rgba(10, 10, 26, 0.9));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .header h1 {
+            color: var(--neon-purple);
+            font-size: 3rem;
+            text-shadow: var(--text-glow);
+            margin-bottom: 1rem;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .header p.tagline {
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            text-shadow: var(--cyan-glow);
+            margin-bottom: 2rem;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            box-shadow: 0 0 20px var(--neon-pink),
+                        0 0 40px rgba(106, 0, 255, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px var(--neon-pink),
+                        0 0 60px var(--neon-purple);
+            text-shadow: 0 0 10px white;
+        }
+
+        /* Contact Form Styles */
+        .contact-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-form {
+            background: rgba(30, 10, 50, 0.3);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--neon-pink);
+            box-shadow: -5px 0 15px rgba(255, 0, 170, 0.3);
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--neon-cyan);
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 5px var(--neon-cyan);
+            font-size: 1.1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            background: rgba(20, 5, 40, 0.5);
+            border: 1px solid var(--neon-purple);
+            border-radius: 6px;
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--neon-pink);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px var(--neon-pink),
+                        0 0 40px var(--neon-purple);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { text-shadow: var(--text-glow); }
+            50% { text-shadow: 0 0 15px var(--neon-purple),
+                        0 0 30px rgba(106, 0, 255, 0.8); }
+        }
+
+        /* Scanline Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(10, 10, 26, 0) 50%, 
+                rgba(0, 247, 255, 0.05) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.3;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header p.tagline {
+                font-size: 1.2rem;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .form-group label {
+                font-size: 1rem;
+            }
+            
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📡 Contact PrepBoosters</h1>
+        <p class="tagline">"We're here to boost your preparation journey"</p>
+        
+        <div class="nav-buttons">
+            <a href="main.html" class="nav-btn">Back To Home</a>
+            <a href="about.html" class="nav-btn">About Us</a>
+        </div>
+    </div>
+
+    <div class="contact-container">
+        <div class="contact-form">
+            <h2 style="color: var(--neon-cyan); text-shadow: var(--cyan-glow); margin-bottom: 2rem; text-align: center;">Send Us a Message</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.body;
+            const particleCount = 25;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 1;
+                const posX = Math.random() * window.innerWidth;
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                const opacity = Math.random() * 0.4 + 0.1;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.bottom = `-10px`;
+                particle.style.opacity = opacity;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                const colors = ['var(--neon-purple)', 'var(--neon-cyan)', 'var(--neon-pink)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(particle);
+            }
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                .particle {
+                    position: fixed;
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: -1;
+                    filter: blur(1px);
+                    animation: float linear infinite;
+                }
+                
+                @keyframes float {
+                    to {
+                        transform: translateY(-100vh);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
