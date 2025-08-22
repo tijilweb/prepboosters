@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - PrepBoosters</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        header {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff,
+                         0 0 20px #0ff,
+                         0 0 30px #0ff;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background: rgba(0, 255, 255, 0.2);
+            text-shadow: 0 0 10px #0ff;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-form {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.5),
+                        0 0 40px rgba(0, 255, 213, 0.3),
+                        0 0 60px rgba(140, 0, 255, 0.2);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 0 0 10px #0ff,
+                         0 0 20px #0ff,
+                         0 0 30px #0ff;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #0ff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+            letter-spacing: 1px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #0ff;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #f0f;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5),
+                        0 0 25px rgba(255, 0, 255, 0.3);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5),
+                        0 0 25px rgba(255, 0, 255, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.7),
+                        0 0 30px rgba(255, 0, 255, 0.5);
+        }
+        
+        .glow-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            border-radius: 15px;
+            box-shadow: inset 0 0 20px rgba(0, 247, 255, 0.3),
+                        inset 0 0 40px rgba(0, 255, 213, 0.2),
+                        inset 0 0 60px rgba(140, 0, 255, 0.1);
+            z-index: -1;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+        
+        @media (max-width: 900px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">PREPBOOSTERS</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="main.html">Resources</a></li>
+                <li><a href="add.html">Upload</a></li>
+                <li><a href="#" style="color: #0ff; text-shadow: 0 0 10px #0ff;">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h1>CONTACT US</h1>
+        
+        <form class="contact-form" action="https://formsubmit.co/kumartijil71@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Contact Form Submission - PrepBoosters">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://prepboosters.vercel.app/thank.html">
+            
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="Name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="Email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="class">Your Class:</label>
+                <select id="class" name="Class" required>
+                    <option value="">Select Class</option>
+                    <option value="9th">9th Grade</option>
+                    <option value="10th">10th Grade</option>
+                    <option value="11th">11th Grade</option>
+                    <option value="12th">12th Grade</option>
+                    <option value="college">College</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="profession">Your Profession:</label>
+                <select id="profession" name="Profession" required>
+                    <option value="">Select Profession</option>
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="educator">Educator</option>
+                    <option value="professional">Professional</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Write Your Message Here:</label>
+                <textarea id="message" name="Message" required></textarea>
+            </div>
+            
+            <button type="submit">Send Message</button>
+            <div class="glow-effect"></div>
+        </form>
+    </div>
+    
+    <footer>
+        <p>© 2025 PrepBoosters. All rights reserved.</p>
+    </footer>
+</body>
+</html>
