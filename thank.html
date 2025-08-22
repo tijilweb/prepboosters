@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - PrepBoosters</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.5),
+                        0 0 40px rgba(0, 255, 213, 0.3),
+                        0 0 60px rgba(140, 0, 255, 0.2);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 20px rgba(0, 247, 255, 0.5),
+                            0 0 40px rgba(0, 255, 213, 0.3),
+                            0 0 60px rgba(140, 0, 255, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 25px rgba(0, 247, 255, 0.7),
+                            0 0 45px rgba(0, 255, 213, 0.5),
+                            0 0 70px rgba(140, 0, 255, 0.4);
+            }
+        }
+        
+        h1 {
+            color: #fff;
+            text-shadow: 0 0 10px #0ff,
+                         0 0 20px #0ff,
+                         0 0 30px #0ff;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+        
+        .highlight {
+            color: #0ff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+            font-weight: bold;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5),
+                        0 0 25px rgba(255, 0, 255, 0.3);
+        }
+        
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.7),
+                        0 0 30px rgba(255, 0, 255, 0.5);
+        }
+        
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff,
+                         0 0 20px #0ff;
+            animation: spin 3s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .glow-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            border-radius: 15px;
+            box-shadow: inset 0 0 20px rgba(0, 247, 255, 0.3),
+                        inset 0 0 40px rgba(0, 255, 213, 0.2),
+                        inset 0 0 60px rgba(140, 0, 255, 0.1);
+            z-index: -1;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">✓</div>
+        <h1>THANK YOU!</h1>
+        <p>Your resource has been successfully submitted to <span class="highlight">PrepBoosters</span>.</p>
+        <p>Our team will review your submission and make it available to the community soon.</p>
+        <p>Your contribution helps students everywhere excel in their studies!</p>
+        <a href="main.html" class="button">Return to Home</a>
+        <a href="add.html" class="button" style="margin-left: 10px;">Submit Another</a>
+        <div class="glow-effect"></div>
+    </div>
+</body>
+</html>
