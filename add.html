@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepBoosters - Neon Upload Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.5),
+                        0 0 40px rgba(0, 255, 213, 0.3),
+                        0 0 60px rgba(140, 0, 255, 0.2);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 0 0 10px #0ff,
+                         0 0 20px #0ff,
+                         0 0 30px #0ff;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .upload-form div {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #0ff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+            letter-spacing: 1px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #0ff;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #f0f;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5),
+                        0 0 25px rgba(255, 0, 255, 0.3);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5),
+                        0 0 25px rgba(255, 0, 255, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.7),
+                        0 0 30px rgba(255, 0, 255, 0.5);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .glow-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            border-radius: 15px;
+            box-shadow: inset 0 0 20px rgba(0, 247, 255, 0.3),
+                        inset 0 0 40px rgba(0, 255, 213, 0.2),
+                        inset 0 0 60px rgba(140, 0, 255, 0.1);
+            z-index: -1;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>UPLOAD RESOURCE</h1>
+        <form class="upload-form" action="https://formsubmit.co/kumartijil71@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Resource Submission for PrepBoosters">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+            
+            <div>
+                <label for="book-name">Book/Resource Name:</label>
+                <input type="text" id="book-name" name="Book/Resource Name" required>
+            </div>
+            
+            <div>
+                <label for="subject-category">Subject Category:</label>
+                <select id="subject-category" name="Subject Category" required>
+                    <option value="">Select Subject</option>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="mathematics">Mathematics</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="description">Description:</label>
+                <textarea id="description" name="Description" rows="3" required></textarea>
+            </div>
+            
+            <div>
+                <label for="contributor">Your Name (optional):</label>
+                <input type="text" id="contributor" name="Contributor Name">
+            </div>
+            
+            <div>
+                <label for="file-link">Google Drive/Dropbox Link:</label>
+                <input type="url" id="file-link" name="File Link" required placeholder="https://drive.google.com/...">
+            </div>
+            
+            <div>
+                <label for="email">Your Email (optional):</label>
+                <input type="email" id="email" name="Email" placeholder="your@email.com">
+            </div>
+            
+            <button type="submit">Submit Resource</button>
+            <div class="glow-effect"></div>
+        </form>
+    </div>
+</body>
+</html>
