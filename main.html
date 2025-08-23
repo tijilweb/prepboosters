@@ -87,6 +87,34 @@ header {
     text-shadow: 0 0 10px rgba(255, 0, 170, 0.3);
 }
 
+        /* Floating Button CSS */
+    #ai-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #00ffc6;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0, 255, 198, 0.6);
+      transition: all 0.25s ease;
+      z-index: 1000;
+    }
+
+    #ai-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 255, 198, 0.9);
+    }
+
+    #ai-button img {
+      width: 32px;
+      height: 32px;
+    }
+
 .search-container {
     display: flex;
     width: 40%;
@@ -338,6 +366,10 @@ footer {
     </style>
 </head>
 <body>
+  <div id="ai-button">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712100.png" alt="AI">
+  </div>
+    
     <header>
         <div class="container">
             <div class="header-content">
@@ -750,6 +782,10 @@ footer {
         </div>
     </footer>
     <script>
+         document.getElementById("ai-button").addEventListener("click", () => {
+      window.location.href = "ai.html";
+    });
+        
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.querySelector(".search-container input");
     const searchButton = document.querySelector(".search-container button");
@@ -782,6 +818,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
+
 
 
 
