@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -396,8 +397,8 @@ footer {
     </nav>
 
     <main>
-        <div class="container">
-            <!-- Countdown Section -->
+         <div class="container">
+        <!-- Countdown Section -->
 <section id="countdown" class="section">
     <h2 class="section-title">⏳ Countdown</h2>
     <div class="resource-grid">
@@ -412,7 +413,7 @@ footer {
         </div>
     </div>
 </section>
-            
+
             <section id="Notice" class="section">
                 <h2 class="section-title">📢 NOTICE</h2>
                 <div class="resource-grid">
@@ -422,7 +423,7 @@ Please scroll down and click the “Next Page” button to access it."</h3>
                     </div>
                 </div>
             </section>
-                    
+                
              <!-- Tests section -->
             <section id="Tests" class="section">
                 <h2 class="section-title">📂Tests</h2>
@@ -803,7 +804,8 @@ Please scroll down and click the “Next Page” button to access it."</h3>
         </div>
     </footer>
     <script>
-        ew Date(2025, 7, 25, 0, 0, 0);  
+     // Start date (25 Aug 2025, local midnight se shuru)
+    const startDate = new Date(2025, 7, 25, 0, 0, 0);  
     // (Month 7 = August, kyunki JS me month 0-based hota hai)
 
     function getTargetDate(startDate, totalDays) {
@@ -837,7 +839,8 @@ Please scroll down and click the “Next Page” button to access it."</h3>
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
-        
+
+
          document.getElementById("ai-button").addEventListener("click", () => {
       window.location.href = "ai.html";
     });
@@ -874,37 +877,3 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
