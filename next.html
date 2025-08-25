@@ -1,249 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>▄︻デP̷R̷E̷P̷B̷O̷O̷S̷T̷E̷R̷S̷══━一⚡</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ▄︻デP̷R̷E̷P̷B̷O̷O̷S̷T̷E̷R̷S̷══━一⚡</title>
     <link rel="icon" type="image/png" href="https://i.postimg.cc/zXVLNBs0/6120894624269714295.jpg">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6582107942703234"
      crossorigin="anonymous"></script>
-<style>
-    :root {
+    <style>
+        :root {
     --dark-bg: #0a0a1a;
     --darker-bg: #050515;
-    --neon-purple: #6a00ff;
-    --neon-cyan: #00f7ff;
+    --light-text: #e0e0ff;
+    --accent: #6a00ff;
+    --accent-dark: #4d00ff;
+    --accent-light: #ff00aa;
+    --card-bg: rgba(30, 10, 50, 0.7);
+    --neon-blue: #00f7ff;
     --neon-pink: #ff00aa;
-    --neon-blue: #4d00ff;
-    --text-glow: 0 0 10px var(--neon-purple),
-                0 0 20px rgba(106, 0, 255, 0.5);
-    --cyan-glow: 0 0 10px var(--neon-cyan),
-                0 0 20px rgba(0, 247, 255, 0.5);
+    --neon-purple: #4d00ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
     background-color: var(--dark-bg);
-    color: #e0e0ff;
-    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
-    line-height: 1.8;
-    padding: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
+    color: var(--light-text);
+    line-height: 1.6;
     background-image: 
-        radial-gradient(circle at 25% 25%, rgba(106, 0, 255, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(255, 0, 170, 0.2) 0%, transparent 50%),
-        linear-gradient(rgba(10, 10, 26, 0.9), rgba(10, 10, 26, 0.9));
+        radial-gradient(circle at 25% 25%, rgba(77, 0, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 0, 170, 0.1) 0%, transparent 50%);
+}
+
+header {
+    background-color: var(--darker-bg);
+    padding: 1.5rem 0;
+    box-shadow: 0 0 15px var(--neon-purple);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--neon-purple);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 5px var(--neon-blue));
+}
+
+.logo:hover img {
+    transform: rotate(-5deg);
+    filter: drop-shadow(0 0 10px var(--neon-pink));
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--neon-pink), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 0, 170, 0.3);
+}
+
+        /* Floating Button CSS */
+    #ai-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #00ffc6;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0, 255, 198, 0.6);
+      transition: all 0.25s ease;
+      z-index: 1000;
+    }
+
+    #ai-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 255, 198, 0.9);
+    }
+
+    #ai-button img {
+      width: 32px;
+      height: 32px;
+    }
+
+.search-container {
+    display: flex;
+    width: 40%;
+    min-width: 250px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--neon-purple);
+    border-radius: 25px 0 0 25px;
+    font-size: 1rem;
+    outline: none;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(77, 0, 255, 0.2);
+}
+
+.search-container input:focus {
+    border-color: var(--neon-blue);
+    box-shadow: inset 0 0 15px rgba(0, 247, 255, 0.3),
+                0 0 10px var(--neon-blue);
+}
+
+.search-container button {
+    padding: 0 20px;
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+    color: white;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 15px var(--neon-pink);
+}
+
+.search-container button:hover {
+    box-shadow: 0 0 25px var(--neon-pink), 0 0 35px var(--neon-purple);
+    transform: scale(1.05);
+}
+
+.search-icon {
+    font-size: 1.2rem;
+}
+
+nav {
+    background-color: var(--darker-bg);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--neon-purple);
+    box-shadow: 0 0 15px rgba(77, 0, 255, 0.2);
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--neon-blue);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 5px var(--neon-blue);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+main {
+    padding: 2rem 0;
+}
+
+.section {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--neon-purple);
+    border: 1px solid rgba(106, 0, 255, 0.3);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--neon-blue);
+    display: inline-block;
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.resource-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(106, 0, 255, 0.2);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(106, 0, 255, 0.3);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
 }
 
-/* Cyberpunk scanline effect */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        rgba(10, 10, 26, 0) 50%, 
-        rgba(0, 247, 255, 0.08) 50%
-    );
-    background-size: 100% 4px;
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.3;
-    animation: scanline 8s linear infinite;
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px var(--neon-pink);
+    border-color: var(--neon-pink);
 }
 
-@keyframes scanline {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 100%; }
+.resource-card h3 {
+    color: var(--neon-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px var(--neon-blue);
 }
 
-/* Animated grid background */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(rgba(106, 0, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(106, 0, 255, 0.1) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: -1;
-    animation: gridMove 60s linear infinite;
-}
-
-@keyframes gridMove {
-    0% { background-position: 0 0; }
-    100% { background-position: 1000px 1000px; }
-}
-
-h1 {
-    color: var(--neon-purple);
-    font-size: 3rem;
-    text-shadow: var(--text-glow);
-    margin-bottom: 2rem;
-    position: relative;
-    animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { text-shadow: var(--text-glow); }
-    50% { text-shadow: 0 0 15px var(--neon-purple),
-                    0 0 30px rgba(106, 0, 255, 0.8); }
-}
-
-p.coming-soon {
-    font-size: 1.8rem;
-    color: var(--neon-cyan);
-    text-shadow: var(--cyan-glow);
-    margin-bottom: 3rem;
-    animation: pulseCyan 3s ease-in-out infinite alternate;
-}
-
-@keyframes pulseCyan {
-    0%, 100% { text-shadow: var(--cyan-glow); }
-    50% { text-shadow: 0 0 15px var(--neon-cyan),
-                    0 0 30px rgba(0, 247, 255, 0.8); }
+.resource-card p {
+    color: #aaa;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    flex-grow: 1;
 }
 
 .btn {
     display: inline-block;
-    padding: 15px 35px;
-    background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
     color: white;
-    font-weight: 700;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    padding: 10px 20px;
     border-radius: 50px;
-    box-shadow: 0 0 20px var(--neon-pink),
-                0 0 40px rgba(106, 0, 255, 0.5);
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    border: none;
-    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    align-self: flex-start;
+    box-shadow: 0 0 15px var(--neon-pink);
 }
 
 .btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 0 30px var(--neon-pink),
-                0 0 60px var(--neon-purple);
-    text-shadow: 0 0 10px white;
+    box-shadow: 0 0 25px var(--neon-pink), 0 0 35px var(--neon-purple);
+    transform: translateY(-2px) scale(1.05);
 }
 
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
-    transition: 0.5s;
+footer {
+    background: var(--darker-bg);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid var(--neon-purple);
+    box-shadow: 0 0 15px rgba(77, 0, 255, 0.2);
 }
 
-.btn:hover::before {
-    left: 100%;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
-/* Floating particles */
-.particle {
-    position: absolute;
-    background: var(--neon-cyan);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: -1;
-    filter: blur(1px);
-    animation: float linear infinite;
+.footer-section {
+    flex: 1;
+    min-width: 200px;
 }
 
-@keyframes float {
-    to {
-        transform: translateY(-100vh);
-    }
+.footer-section h1 {
+    color: var(--neon-blue);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.footer-section p, .footer-section a {
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.copyright {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--neon-purple);
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue);
 }
 
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.2rem;
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
     }
-    
-    p.coming-soon {
-        font-size: 1.4rem;
+
+    .logo {
+        margin-bottom: 1rem;
+        justify-content: center;
     }
-    
-    .btn {
-        padding: 12px 25px;
-        font-size: 0.9rem;
+
+    .search-container {
+        width: 100%;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .resource-grid {
+        grid-template-columns: 1fr;
     }
 }
-</style>
+    </style>
 </head>
 <body>
-
-    <h1>▄︻デP̷R̷E̷P̷B̷O̷O̷S̷T̷E̷R̷S̷══━一⚡</h1>
-    <p class="Content coming-soon">Content coming soon...</p>
-    <a href="main.html" class="btn">Back</a>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const container = document.body;
-    const particleCount = 30;
+  <div id="ai-button">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712100.png" alt="AI">
+  </div>
     
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/zXVLNBs0/6120894624269714295.jpg" alt=" ▄︻デP̷R̷E̷P̷B̷O̷O̷S̷T̷E̷R̷S̷══━一⚡ Logo">
+                    <h1> ▄︻デP̷R̷E̷P̷B̷O̷O̷S̷T̷E̷R̷S̷══━一⚡</h1>
+                </div>
+                <div class="search-container">
+                    <input type="text" placeholder="Search resources...">
+                    <button><span class="search-icon">🔍</span></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+             <!-- Tests section -->
+            <section id="Class 10th Materials" class="section">
+                <h2 class="section-title">📂Class 10th Materials</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>"Educart Mathematics SQP"</h3>
+                        <p>Math sample paper for class 10th</p>
+                        <a href="https://drive.google.com/file/d/1gGTre9ANQsVQ75nROheeMubW9iNfZpzE/view?usp=drive_link" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>"Pw Competency Based Questions"</h3>
+                        <p>Class 10th questions by pw</p>
+                        <a href="https://drive.google.com/file/d/1KJb5qGh53Zsy1t9QWcYjfMc0eQ-DK1H1/view?usp=drive_link" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>"Pw Endgame"</h3>
+                        <p>Last Week Preparation for class 10th</p>
+                        <a href="https://drive.google.com/file/d/1kWCRj0FTUC1KPG-Js7kggtlE91HUQdAz/view?usp=drive_link" class="btn">Access</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <h3>Math made easy by ritik sir class 10th</h3>
+                        <p>Handwritten notes by babua sir class 10th</p>
+                        <a href="https://drive.google.com/file/d/1dvETKGiH_EYiH3Fl9Hftlo0EeI6guVgr/view?usp=drive_link" class="btn">Access</a>
+                    </div>
+
+                     <div class="resource-card">
+                        <h3>"More Materials Coming Soon..."</h3>
+                        <p>Coming Soon...</p>
+                    </div>
+                </div>
+            </section>
+            </div>
+    </main>
+
+    <footer>
+        <div class="next-page-container">
+    <a href="main.html" class="btn">Back To Home</a>
+</div>
+
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <h1><a href="privacy-policy.html">Privacy Policy</a></h1>
+                    <h1><a href="https://chat.whatsapp.com/CzS79xnhYRP5u2zWcbByfo?mode=ac_t">Join Our Whatsapp Community</a></h1>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <a href="contact.html">Contact Us</a>
+                    <p>Email: PrepBoosters@gmail.com</p>
+                    <p>Phone: Join Our Community</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 PrepBoosters. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+         document.getElementById("ai-button").addEventListener("click", () => {
+      window.location.href = "ai.html";
+    });
         
-        // Random properties
-        const size = Math.random() * 5 + 1;
-        const posX = Math.random() * window.innerWidth;
-        const duration = Math.random() * 10 + 5;
-        const delay = Math.random() * 5;
-        const opacity = Math.random() * 0.5 + 0.1;
-        
-        // Apply styles
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${posX}px`;
-        particle.style.bottom = `-10px`;
-        particle.style.opacity = opacity;
-        particle.style.animationDuration = `${duration}s`;
-        particle.style.animationDelay = `${delay}s`;
-        
-        // Random color
-        const colors = ['var(--neon-purple)', 'var(--neon-cyan)', 'var(--neon-pink)'];
-        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-        
-        container.appendChild(particle);
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector(".search-container input");
+    const searchButton = document.querySelector(".search-container button");
+    const cards = document.querySelectorAll(".resource-card");
+
+    function searchResources() {
+        const searchText = searchInput.value.toLowerCase();
+        cards.forEach(card => {
+            const title = card.querySelector("h3").textContent.toLowerCase();
+            const description = card.querySelector("p").textContent.toLowerCase();
+            if (title.includes(searchText) || description.includes(searchText)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
     }
+
+    // Button click
+    searchButton.addEventListener("click", searchResources);
+
+    // Press Enter in input
+    searchInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            searchResources();
+        }
+    });
 });
-    </script>
+</script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
