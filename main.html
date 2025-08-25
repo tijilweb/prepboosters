@@ -94,6 +94,23 @@ header {
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 10px rgba(255, 0, 170, 0.3);
 }
+        .neon-card {
+  background: rgba(30,10,50,0.7);
+  padding: 20px 30px;
+  border-radius: 10px;
+  color: #00f7ff;
+  font-size: 1.2rem;
+  text-align: center;
+  width: fit-content;
+  margin: 20px auto;
+  box-shadow: 0 0 10px #00f7ff, 0 0 20px #4d00ff;
+  transition: box-shadow 0.3s ease;
+}
+
+.neon-card:hover {
+  box-shadow: 0 0 20px #ff00aa, 0 0 40px #4d00ff;
+}
+
 
         /* Floating Button CSS */
     #ai-button {
@@ -429,6 +446,10 @@ footer {
 
     <main>
          <div class="container">
+             <div id="motivation" class="neon-card">
+  <!-- Motivational thought will appear here -->
+</div>
+
         <!-- Countdown Section -->
 <section id="countdown" class="section">
     <h2 class="section-title">⏳ Countdown</h2>
@@ -857,6 +878,72 @@ Please scroll down and click the “Next Page” button to access it."</h3>
         </div>
     </footer>
     <script>
+        const thoughts = [
+  "Time is limited. Focus on your goals.",
+  "Small daily progress leads to big results.",
+  "Consistency beats intensity.",
+  "Your future depends on what you do today.",
+  "Set tasks. Complete them. Achieve your goals.",
+  "Every step counts. Keep moving forward.",
+  "Discipline is the bridge between goals and achievement.",
+  "Dream big, start small, act now.",
+  "Believe you can and you’re halfway there.",
+  "Success is the sum of small efforts repeated daily.",
+  "Push yourself because no one else is going to do it for you.",
+  "Don’t watch the clock; do what it does. Keep going.",
+  "Focus on being productive instead of busy.",
+  "A year from now you will wish you started today.",
+  "Do something today that your future self will thank you for.",
+  "Motivation gets you started. Habit keeps you going.",
+  "Strive for progress, not perfection.",
+  "You don’t have to be great to start, but you have to start to be great.",
+  "Success doesn’t just find you. You have to go out and get it.",
+  "Discipline is choosing between what you want now and what you want most.",
+  "The key to success is to focus on goals, not obstacles.",
+  "Don’t stop when you’re tired. Stop when you’re done.",
+  "Small steps in the right direction can turn out to be the biggest step of your life.",
+  "Do it with passion or not at all.",
+  "The harder you work for something, the greater you’ll feel when you achieve it.",
+  "Dream it. Wish it. Do it.",
+  "Don’t wait for opportunity. Create it.",
+  "Success is not for the lazy.",
+  "Push harder than yesterday if you want a different tomorrow.",
+  "Great things never come from comfort zones.",
+  "Wake up with determination. Go to bed with satisfaction.",
+  "Don’t limit your challenges. Challenge your limits.",
+  "Success is the result of preparation, hard work, and learning from failure.",
+  "The secret of getting ahead is getting started.",
+  "Your limitation—it’s only your imagination.",
+  "Sometimes later becomes never. Do it now.",
+  "Great things take time.",
+  "Don’t quit. Suffer now and live the rest of your life as a champion.",
+  "Work until your idols become your rivals.",
+  "You are your only limit.",
+  "Success is no accident. It’s hard work, perseverance, learning, and love for what you do.",
+  "Don’t stop until you’re proud.",
+  "The difference between ordinary and extraordinary is that little extra.",
+  "Stay focused, go after your dreams and keep moving toward your goals.",
+  "Don’t be afraid to give up the good to go for the great.",
+  "Hard work beats talent when talent doesn’t work hard.",
+  "Your dreams don’t work unless you do.",
+  "Do what is right, not what is easy.",
+  "Success is a journey, not a destination.",
+  "It always seems impossible until it’s done.",
+  "Act as if what you do makes a difference. It does.",
+  "Success isn’t always about greatness. It’s about consistency.",
+  "Believe in yourself and all that you are.",
+  "Stay positive, work hard, make it happen."
+];
+
+
+function showThought(){
+  const index = Math.floor(Math.random() * thoughts.length);
+  document.getElementById('motivation').innerText = thoughts[index];
+}
+
+// Show thought on page load
+window.onload = showThought;
+
       (function(){
   const canvas = document.getElementById('neonCanvas');
   if(!canvas) return;
@@ -1037,3 +1124,4 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
+
