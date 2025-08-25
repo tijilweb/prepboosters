@@ -397,6 +397,22 @@ footer {
 
     <main>
         <div class="container">
+            <!-- Countdown Section -->
+<section id="countdown" class="section">
+    <h2 class="section-title">⏳ Countdown</h2>
+    <div class="resource-grid">
+        <div class="resource-card">
+            <h3>Class 11th JEE Mains 2027</h3>
+            <p id="timer11"></p>
+        </div>
+
+        <div class="resource-card">
+            <h3>Class 12th JEE Mains 2026</h3>
+            <p id="timer12"></p>
+        </div>
+    </div>
+</section>
+            
             <section id="Notice" class="section">
                 <h2 class="section-title">📢 NOTICE</h2>
                 <div class="resource-grid">
@@ -787,6 +803,41 @@ Please scroll down and click the “Next Page” button to access it."</h3>
         </div>
     </footer>
     <script>
+        ew Date(2025, 7, 25, 0, 0, 0);  
+    // (Month 7 = August, kyunki JS me month 0-based hota hai)
+
+    function getTargetDate(startDate, totalDays) {
+        const target = new Date(startDate);
+        target.setDate(target.getDate() + totalDays);
+        return target;
+    }
+
+    function updateCountdown() {
+        const now = new Date();
+
+        // Class 12th
+        const target12 = getTargetDate(startDate, 149);
+        const diff12 = target12 - now;
+        document.getElementById("timer12").textContent = formatTime(diff12);
+
+        // Class 11th
+        const target11 = getTargetDate(startDate, 512);
+        const diff11 = target11 - now;
+        document.getElementById("timer11").textContent = formatTime(diff11);
+    }
+
+    function formatTime(ms) {
+        if (ms <= 0) return "0d 0h 0m 0s";
+        const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+        return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+        
          document.getElementById("ai-button").addEventListener("click", () => {
       window.location.href = "ai.html";
     });
@@ -823,6 +874,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
+
 
 
 
