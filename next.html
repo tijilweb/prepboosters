@@ -286,6 +286,28 @@ main {
     box-shadow: 0 0 25px var(--neon-pink), 0 0 35px var(--neon-purple);
     transform: translateY(-2px) scale(1.05);
 }
+#neonCanvas {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  pointer-events:none;
+  background:#0a0a1a;
+}
+
+/* Optional: Neon pulse effect for buttons/cards */
+.neon-glow {
+  transition: box-shadow 0.3s ease;
+}
+.neon-glow:hover {
+  box-shadow:
+    0 0 10px #ff00aa,
+    0 0 20px #ff00aa,
+    0 0 30px #6a00ff,
+    0 0 40px #00f7ff;
+}
 
 footer {
     background: var(--darker-bg);
@@ -384,6 +406,8 @@ footer {
             </div>
         </div>
     </header>
+    
+<canvas id="neonCanvas"></canvas>
 
     <main>
         <div class="container">
@@ -450,6 +474,104 @@ footer {
         </div>
     </footer>
     <script>
+        (function(){
+  const canvas = document.getElementById('neonCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const colors = ['#00f7ff','#ff00aa','#4d00ff'];
+  const particles = [];
+  const mouse = {x: canvas.width/2, y: canvas.height/2};
+
+  // Particle class
+  class Particle {
+    constructor(){
+      this.x = Math.random()*canvas.width;
+      this.y = Math.random()*canvas.height;
+      this.size = Math.random()*3+1;
+      this.speedX = (Math.random()-0.5)*2;
+      this.speedY = (Math.random()-0.5)*2;
+      this.color = colors[Math.floor(Math.random()*colors.length)];
+    }
+    update(){
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      // Bounce back
+      if(this.x>canvas.width || this.x<0) this.speedX*=-1;
+      if(this.y>canvas.height || this.y<0) this.speedY*=-1;
+
+      // Move slightly towards mouse
+      const dx = mouse.x - this.x;
+      const dy = mouse.y - this.y;
+      this.x += dx*0.001;
+      this.y += dy*0.001;
+    }
+    draw(){
+      ctx.fillStyle = this.color;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+      ctx.fill();
+    }
+  }
+
+  function initParticles(){
+    particles.length = 0;
+    const count = (canvas.width*canvas.height)/12000;
+    for(let i=0;i<count;i++) particles.push(new Particle());
+  }
+
+  function connectParticles(){
+    for(let i=0;i<particles.length;i++){
+      for(let j=i;j<particles.length;j++){
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist<120){
+          ctx.beginPath();
+          ctx.strokeStyle=particles[i].color;
+          ctx.globalAlpha = 0.3;
+          ctx.lineWidth=1;
+          ctx.moveTo(particles[i].x,particles[i].y);
+          ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.stroke();
+          ctx.globalAlpha =1;
+        }
+      }
+    }
+  }
+
+  function animate(){
+    ctx.fillStyle='rgba(10,10,26,0.25)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach(p=>{
+      p.update();
+      p.draw();
+    });
+    connectParticles();
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', ()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initParticles();
+  });
+
+  window.addEventListener('mousemove', e=>{
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  initParticles();
+  animate();
+})();
+
          document.getElementById("ai-button").addEventListener("click", () => {
       window.location.href = "ai.html";
     });
@@ -486,6 +608,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
+
 
 
 
