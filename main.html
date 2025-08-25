@@ -411,6 +411,16 @@ footer {
             <h3>Class 12th JEE Mains 2026</h3>
             <p id="timer12"></p>
         </div>
+
+        <div class="resource-card">
+            <h3>Class 12th Neet 2026</h3>
+            <p id="timer13"></p>
+        </div>
+
+         <div class="resource-card">
+            <h3>Class 11th Neet 2027</h3>
+            <p id="timer14"></p>
+        </div>
     </div>
 </section>
 
@@ -826,6 +836,14 @@ Please scroll down and click the “Next Page” button to access it."</h3>
         const target11 = getTargetDate(startDate, 512);
         const diff11 = target11 - now;
         document.getElementById("timer11").textContent = formatTime(diff11);
+
+        const target13 = getTargetDate(startDate, 251);
+        const diff13 = target13 - now;
+        document.getElementById("timer13").textContent = formatTime(diff13);
+
+        const target14 = getTargetDate(startDate, 615);
+        const diff14 = target14 - now;
+        document.getElementById("timer14").textContent = formatTime(diff14);
     }
 
     function formatTime(ms) {
@@ -877,3 +895,4 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
+
