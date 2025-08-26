@@ -649,17 +649,6 @@ function showThought(){
 // Show thought on page load
 window.onload = showThought;
 
-        (function(){
-  const canvas = document.getElementById('neonCanvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const colors = ['#00f7ff','#ff00aa','#4d00ff'];
-  const particles = [];
-  const mouse = {x: canvas.width/2, y: canvas.height/2};
-
          document.getElementById("ai-button").addEventListener("click", () => {
       window.location.href = "ai.html";
     });
@@ -696,6 +685,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
+
 
 
 
