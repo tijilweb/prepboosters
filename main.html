@@ -875,6 +875,11 @@ Please scroll down and click the “Next Page” button to access it."</h3>
         </div>
     </footer>
     <script>
+        //Prevent right click
+document.oncontextmenu = () =>  {
+    alert("Don't try to right click")
+    return false
+}
         const thoughts = [
   "Time is limited. Focus on your goals.",
   "Small daily progress leads to big results.",
@@ -1022,6 +1027,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
+
 
 
 
