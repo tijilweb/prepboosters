@@ -594,6 +594,31 @@
 </div>
 
 <script>
+  // Block basic actions
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("keydown", e => {
+    if (e.ctrlKey || e.metaKey) {
+        const forbidden = ['s','u','c','a','p'];
+        if (forbidden.includes(e.key.toLowerCase())) e.preventDefault();
+    }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
+        const forbidden = ['i','c','j'];
+        if (forbidden.includes(e.key.toLowerCase())) e.preventDefault();
+    }
+    if (e.key === "F12") e.preventDefault();
+});
+
+// Detect console open (basic)
+setInterval(function() {
+    const start = new Date();
+    debugger;
+    const end = new Date();
+    if (end - start > 100) { 
+        // console opened
+        document.body.innerHTML = "Access denied"; // hide content
+    }
+}, 1000);
+
 let apiKey = '';
 let apiKeySaved = false;
 
@@ -703,3 +728,4 @@ textarea.addEventListener('keydown', function(e) {
 </body>
 
 </html>
+
