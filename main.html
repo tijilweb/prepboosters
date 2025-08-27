@@ -875,41 +875,28 @@ Please scroll down and click the “Next Page” button to access it."</h3>
         </div>
     </footer>
     <script>
-      // Silent protection script
-
-// Block right-click
-document.addEventListener("contextmenu", function(e){
-    e.preventDefault();
-});
-
-// Block common keyboard shortcuts
-document.addEventListener("keydown", function(e) {
+    // Block basic actions
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("keydown", e => {
     if (e.ctrlKey || e.metaKey) {
-        const forbiddenCtrlKeys = ['s','u','c','a','p'];
-        if (forbiddenCtrlKeys.includes(e.key.toLowerCase())) e.preventDefault();
+        const forbidden = ['s','u','c','a','p'];
+        if (forbidden.includes(e.key.toLowerCase())) e.preventDefault();
     }
     if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
-        const forbiddenShiftKeys = ['i','c','j'];
-        if (forbiddenShiftKeys.includes(e.key.toLowerCase())) e.preventDefault();
+        const forbidden = ['i','c','j'];
+        if (forbidden.includes(e.key.toLowerCase())) e.preventDefault();
     }
     if (e.key === "F12") e.preventDefault();
 });
 
-// Detect DevTools open and silently redirect
-let devtoolsOpen = false;
-const threshold = 160;
-
+// Detect console open (basic)
 setInterval(function() {
-    const widthDiff = window.outerWidth - window.innerWidth > threshold;
-    const heightDiff = window.outerHeight - window.innerHeight > threshold;
-    if (widthDiff || heightDiff) {
-        if (!devtoolsOpen) {
-            devtoolsOpen = true;
-            // Redirect user silently
-            window.location.href = "https://prepboosters.com"; 
-        }
-    } else {
-        devtoolsOpen = false;
+    const start = new Date();
+    debugger;
+    const end = new Date();
+    if (end - start > 100) { 
+        // console opened
+        document.body.innerHTML = "Access denied"; // hide content
     }
 }, 1000);
 
@@ -1060,6 +1047,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </body>
 
 </html>
+
 
 
 
