@@ -9,11 +9,36 @@
     <link rel="icon" type="image/png" href="https://i.postimg.cc/zXVLNBs0/6120894624269714295.jpg">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6582107942703234"
      crossorigin="anonymous"></script>
-<canvas id="fireworks"></canvas>
-<div class="diya">🪔</div>
-<div class="candle left">🕯️</div>
-<div class="candle right">🕯️</div>
     <style>
+body {
+    margin: 0;
+    background: #000; /* night sky */
+  }
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* stays in background */
+  }
+  .bg-diya {
+    position: fixed;
+    bottom: 15px;
+    font-size: 80px;
+    z-index: -1;
+    filter: drop-shadow(0 0 20px orange);
+    animation: flicker 1s infinite alternate;
+  }
+  .bg-diya.left { left: 20%; }
+  .bg-diya.center { left: 50%; transform: translateX(-50%); }
+  .bg-diya.right { right: 20%; }
+
+  @keyframes flicker {
+    from { filter: drop-shadow(0 0 10px orange); }
+    to   { filter: drop-shadow(0 0 25px gold); }
+  }
+
         :root {
     --dark-bg: #0a0a1a;
     --darker-bg: #050515;
@@ -42,36 +67,6 @@ body {
         radial-gradient(circle at 25% 25%, rgba(77, 0, 255, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, rgba(255, 0, 170, 0.1) 0%, transparent 50%);
 }
-
-body {
-    margin: 0;
-    overflow: hidden;
-    background: radial-gradient(circle at bottom, #0b0b2c, #000);
-  }
-  canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
-  .diya {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 80px;
-    filter: drop-shadow(0 0 15px orange);
-    z-index: 10;
-  }
-  .candle {
-    position: fixed;
-    bottom: 20px;
-    font-size: 60px;
-    filter: drop-shadow(0 0 12px yellow);
-    z-index: 10;
-  }
-  .candle.left { left: 20%; }
-  .candle.right { right: 20%; }
 
 header {
     background-color: var(--darker-bg);
@@ -914,55 +909,87 @@ const canvas = document.getElementById("fireworks");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  class Firework {
+  let rockets = [];
+  let particles = [];
+
+  // firework sounds
+  const rocketSound = new Audio("https://actions.google.com/sounds/v1/ambiences/rocket_whoosh.ogg");
+  const boomSound = new Audio("https://actions.google.com/sounds/v1/explosions/explosion.ogg");
+
+  class Rocket {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = canvas.height;
+      this.speed = Math.random() * 3 + 6;
+      this.color = `hsl(${Math.random()*360},100%,50%)`;
+      this.exploded = false;
+      rocketSound.cloneNode().play();
+    }
+    update() {
+      this.y -= this.speed;
+      if (this.y < canvas.height/3 + Math.random()*200 && !this.exploded) {
+        this.explode();
+      }
+    }
+    explode() {
+      this.exploded = true;
+      boomSound.cloneNode().play();
+      for (let i = 0; i < 60; i++) {
+        particles.push(new Particle(this.x, this.y, this.color));
+      }
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, 3, 0, Math.PI*2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+  }
+
+  class Particle {
     constructor(x, y, color) {
       this.x = x;
       this.y = y;
       this.color = color;
-      this.radius = Math.random() * 3 + 2;
+      this.radius = Math.random()*3+2;
       this.angle = Math.random() * Math.PI * 2;
       this.speed = Math.random() * 5 + 2;
       this.life = 100;
     }
     update() {
       this.x += Math.cos(this.angle) * this.speed;
-      this.y += Math.sin(this.angle) * this.speed;
+      this.y += Math.sin(this.angle) * this.speed + 0.5; // gravity
       this.speed *= 0.95;
       this.life--;
     }
     draw() {
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
       ctx.fillStyle = this.color;
       ctx.fill();
     }
   }
 
-  let fireworks = [];
-
-  function createFirework() {
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height / 2;
-    const colors = ["#ff0040", "#ff8000", "#ffff00", "#00ff80", "#00cfff", "#ff00ff"];
-    for (let i = 0; i < 50; i++) {
-      fireworks.push(new Firework(x, y, colors[Math.floor(Math.random() * colors.length)]));
-    }
-  }
-
   function animate() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
 
-    fireworks.forEach((f, i) => {
-      f.update();
-      f.draw();
-      if (f.life <= 0) fireworks.splice(i, 1);
+    rockets.forEach((r,i) => {
+      r.update();
+      r.draw();
+      if (r.exploded) rockets.splice(i,1);
+    });
+
+    particles.forEach((p,i) => {
+      p.update();
+      p.draw();
+      if (p.life <= 0) particles.splice(i,1);
     });
 
     requestAnimationFrame(animate);
   }
 
-  setInterval(createFirework, 1500);
+  setInterval(() => rockets.push(new Rocket()), 2000);
   animate();
 
   window.addEventListener("resize", () => {
@@ -970,7 +997,7 @@ const canvas = document.getElementById("fireworks");
     canvas.height = window.innerHeight;
   });
 
-    // Block basic actions
+ // Block basic actions
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("keydown", e => {
     if (e.ctrlKey || e.metaKey) {
