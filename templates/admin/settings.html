@@ -1,0 +1,614 @@
+{% extends "base.html" %}
+
+{% block title %}Website Settings - PrepBoosters{% endblock %}
+
+{% block extra_css %}
+<style>
+    .settings-container {
+        background: #f8f9fc;
+        min-height: 100vh;
+    }
+    
+    .settings-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    }
+    
+    .settings-section {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .settings-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    .settings-toggle {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 26px;
+        margin-right: 10px;
+    }
+    
+    .settings-toggle input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+    
+    .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+    
+    input:checked + .toggle-slider {
+        background-color: #4e73df;
+    }
+    
+    input:checked + .toggle-slider:before {
+        transform: translateX(24px);
+    }
+    
+    .preview-box {
+        background: #f8f9fa;
+        border: 1px dashed #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 15px;
+    }
+    
+    .danger-zone {
+        border: 2px solid #e74a3b;
+        border-radius: 15px;
+        padding: 25px;
+        background: #fdf2f2;
+    }
+    
+    /* Tab Navigation */
+    .settings-tabs {
+        border-bottom: 1px solid #dee2e6;
+        margin-bottom: 25px;
+    }
+    
+    .settings-tabs .nav-link {
+        border: none;
+        padding: 12px 20px;
+        color: #6c757d;
+        font-weight: 500;
+        border-radius: 8px 8px 0 0;
+        margin-right: 5px;
+    }
+    
+    .settings-tabs .nav-link.active {
+        color: #4e73df;
+        background: white;
+        border-bottom: 3px solid #4e73df;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .settings-card {
+            padding: 20px;
+        }
+        
+        .settings-tabs .nav-link {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="settings-container">
+    <div class="container-fluid px-4 py-4">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="mb-1">Website Settings</h2>
+                <p class="text-muted mb-0">Customize and configure your website</p>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="saveAllSettings()">
+                <i class="bi bi-save"></i> Save All Changes
+            </button>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="settings-tabs">
+            <ul class="nav nav-tabs" id="settingsTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="general-tab" data-bs-toggle="tab" 
+                            data-bs-target="#general" type="button">
+                        <i class="bi bi-gear"></i> General
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="content-tab" data-bs-toggle="tab" 
+                            data-bs-target="#content" type="button">
+                        <i class="bi bi-file-text"></i> Content
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="chat-tab" data-bs-toggle="tab" 
+                            data-bs-target="#chat" type="button">
+                        <i class="bi bi-chat"></i> Chat
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="seo-tab" data-bs-toggle="tab" 
+                            data-bs-target="#seo" type="button">
+                        <i class="bi bi-search"></i> SEO
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="social-tab" data-bs-toggle="tab" 
+                            data-bs-target="#social" type="button">
+                        <i class="bi bi-share"></i> Social
+                    </button>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Tab Content -->
+        <div class="tab-content" id="settingsTabContent">
+            <!-- General Settings -->
+            <div class="tab-pane fade show active" id="general">
+                <div class="settings-card">
+                    <div class="settings-section">
+                        <h5 class="mb-3">Site Information</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Website Name</label>
+                                <input type="text" class="form-control" 
+                                       name="setting_website_name" 
+                                       value="{{ get_setting('website_name', 'PrepBoosters') }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Contact Email</label>
+                                <input type="email" class="form-control" 
+                                       name="setting_contact_email" 
+                                       value="{{ get_setting('contact_email', 'support@prepboosters.com') }}">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Website Description</label>
+                            <textarea class="form-control" name="setting_website_description" 
+                                      rows="3">{{ get_setting('website_description', 'Your exam preparation partner for JEE, NEET, and Class 10th') }}</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h5 class="mb-3">Access Control</h5>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" 
+                                   name="setting_registration_open" 
+                                   id="registrationOpen" 
+                                   {% if get_setting('registration_open', '1') == '1' %}checked{% endif %}>
+                            <label class="form-check-label" for="registrationOpen">
+                                Allow New User Registrations
+                            </label>
+                        </div>
+                        
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" 
+                                   name="setting_maintenance_mode" 
+                                   id="maintenanceMode"
+                                   {% if get_setting('maintenance_mode') == '1' %}checked{% endif %}>
+                            <label class="form-check-label" for="maintenanceMode">
+                                Maintenance Mode (Only admins can access)
+                            </label>
+                        </div>
+                        
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" 
+                                   name="setting_require_verification" 
+                                   id="requireVerification"
+                                   {% if get_setting('require_verification') == '1' %}checked{% endif %}>
+                            <label class="form-check-label" for="requireVerification">
+                                Require Email Verification
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h5 class="mb-3">Contact Information</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" 
+                                       name="setting_contact_phone" 
+                                       value="{{ get_setting('contact_phone', '+91 98765 43210') }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Address</label>
+                                <input type="text" class="form-control" 
+                                       name="setting_contact_address" 
+                                       value="{{ get_setting('contact_address', '') }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Settings -->
+            <div class="tab-pane fade" id="content">
+                <div class="settings-card">
+                    <div class="settings-section">
+                        <h5 class="mb-3">Homepage Content</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Hero Title</label>
+                            <input type="text" class="form-control" 
+                                   name="setting_hero_title" 
+                                   value="{{ get_setting('hero_title', 'Ace Your Exams with PrepBoosters') }}">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Hero Description</label>
+                            <textarea class="form-control" name="setting_hero_description" 
+                                      rows="3">{{ get_setting('hero_description', 'Comprehensive study materials for JEE, NEET, and Class 10th. All resources in one place, accessible anywhere.') }}</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h5 class="mb-3">Featured Content</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Featured Books Limit</label>
+                            <input type="number" class="form-control" 
+                                   name="setting_featured_books_limit" 
+                                   value="{{ get_setting('featured_books_limit', '6') }}" min="1" max="20">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Default Book Thumbnail</label>
+                            <input type="url" class="form-control" 
+                                   name="setting_default_thumbnail" 
+                                   value="{{ get_setting('default_thumbnail', '') }}"
+                                   placeholder="https://example.com/default-book.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Settings -->
+            <div class="tab-pane fade" id="chat">
+                <div class="settings-card">
+                    <div class="settings-section">
+                        <h5 class="mb-3">Chat Configuration</h5>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" 
+                                   name="setting_chat_enabled" 
+                                   id="chatEnabled"
+                                   {% if get_setting('chat_enabled', '1') == '1' %}checked{% endif %}>
+                            <label class="form-check-label" for="chatEnabled">
+                                Enable Chat System
+                            </label>
+                        </div>
+                        
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" 
+                                   name="setting_chat_guest_view" 
+                                   id="chatGuestView"
+                                   {% if get_setting('chat_guest_view') == '1' %}checked{% endif %}>
+                            <label class="form-check-label" for="chatGuestView">
+                                Allow Guests to View Chat
+                            </label>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Chat Room Name</label>
+                                <input type="text" class="form-control" 
+                                       name="setting_chat_room_name" 
+                                       value="{{ get_setting('chat_room_name', 'PrepBoosters Community') }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Max Messages to Load</label>
+                                <input type="number" class="form-control" 
+                                       name="setting_chat_max_messages" 
+                                       value="{{ get_setting('chat_max_messages', '100') }}" min="10" max="1000">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Welcome Message</label>
+                            <textarea class="form-control" name="setting_chat_welcome" 
+                                      rows="3">{{ get_setting('chat_welcome', 'Welcome to PrepBoosters Community Chat! Be respectful and help each other.') }}</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h5 class="mb-3">Chat Rules</h5>
+                        <div class="mb-3">
+                            <textarea class="form-control" name="setting_chat_rules" rows="5">
+{{ get_setting('chat_rules', '1. Be respectful to everyone\n2. No spam or advertisements\n3. No sharing of personal information\n4. Keep discussions relevant to studies\n5. Report inappropriate behavior to admins') }}</textarea>
+                            <small class="text-muted">One rule per line</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SEO Settings -->
+            <div class="tab-pane fade" id="seo">
+                <div class="settings-card">
+                    <div class="settings-section">
+                        <h5 class="mb-3">Search Engine Optimization</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Meta Title</label>
+                            <input type="text" class="form-control" 
+                                   name="setting_meta_title" 
+                                   value="{{ get_setting('meta_title', 'PrepBoosters - Exam Preparation Platform') }}">
+                            <div class="preview-box">
+                                <strong>Preview:</strong>
+                                <div class="mt-1" id="metaTitlePreview">
+                                    {{ get_setting('meta_title', 'PrepBoosters - Exam Preparation Platform')|truncate(60) }}
+                                </div>
+                                <small class="text-muted">Recommended: 50-60 characters</small>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Meta Description</label>
+                            <textarea class="form-control" name="setting_meta_description" 
+                                      rows="3">{{ get_setting('meta_description', 'Free study materials for JEE, NEET, and Class 10th exams. Google Drive links, community chat, and more.') }}</textarea>
+                            <div class="preview-box">
+                                <strong>Preview:</strong>
+                                <div class="mt-1" id="metaDescPreview">
+                                    {{ get_setting('meta_description', 'Free study materials for JEE, NEET, and Class 10th exams.')|truncate(160) }}
+                                </div>
+                                <small class="text-muted">Recommended: 150-160 characters</small>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Meta Keywords</label>
+                            <textarea class="form-control" name="setting_meta_keywords" 
+                                      rows="2">{{ get_setting('meta_keywords', 'JEE preparation, NEET preparation, Class 10th, exam preparation, study materials') }}</textarea>
+                            <small class="text-muted">Separate with commas</small>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h5 class="mb-3">Analytics</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Google Analytics ID</label>
+                            <input type="text" class="form-control" 
+                                   name="setting_google_analytics" 
+                                   value="{{ get_setting('google_analytics', '') }}"
+                                   placeholder="UA-XXXXXXXXX-X or G-XXXXXXXXXX">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Social Settings -->
+            <div class="tab-pane fade" id="social">
+                <div class="settings-card">
+                    <div class="settings-section">
+                        <h5 class="mb-3">Social Media Links</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Facebook</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-facebook text-primary"></i>
+                                    </span>
+                                    <input type="url" class="form-control" 
+                                           name="setting_facebook_url" 
+                                           value="{{ get_setting('facebook_url', '') }}"
+                                           placeholder="https://facebook.com/yourpage">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Instagram</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-instagram text-danger"></i>
+                                    </span>
+                                    <input type="url" class="form-control" 
+                                           name="setting_instagram_url" 
+                                           value="{{ get_setting('instagram_url', '') }}"
+                                           placeholder="https://instagram.com/yourpage">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Twitter</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-twitter text-info"></i>
+                                    </span>
+                                    <input type="url" class="form-control" 
+                                           name="setting_twitter_url" 
+                                           value="{{ get_setting('twitter_url', '') }}"
+                                           placeholder="https://twitter.com/yourpage">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">YouTube</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-youtube text-danger"></i>
+                                    </span>
+                                    <input type="url" class="form-control" 
+                                           name="setting_youtube_url" 
+                                           value="{{ get_setting('youtube_url', '') }}"
+                                           placeholder="https://youtube.com/yourchannel">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h5 class="mb-3">Sharing Settings</h5>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" 
+                                   name="setting_enable_sharing" 
+                                   id="enableSharing"
+                                   {% if get_setting('enable_sharing', '1') == '1' %}checked{% endif %}>
+                            <label class="form-check-label" for="enableSharing">
+                                Enable Social Sharing Buttons
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Danger Zone -->
+        <div class="danger-zone mt-4">
+            <h5 class="text-danger mb-3">
+                <i class="bi bi-exclamation-triangle"></i> Danger Zone
+            </h5>
+            <p class="text-muted mb-4">These actions are irreversible. Proceed with caution.</p>
+            
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-outline-danger w-100" 
+                            data-bs-toggle="modal" data-bs-target="#clearChatModal">
+                        <i class="bi bi-trash"></i> Clear All Chat
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-outline-danger w-100"
+                            data-bs-toggle="modal" data-bs-target="#resetSettingsModal">
+                        <i class="bi bi-arrow-clockwise"></i> Reset Settings
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url_for('backup_database') }}" class="btn btn-outline-primary w-100">
+                        <i class="bi bi-download"></i> Backup Database
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Clear Chat Modal -->
+<div class="modal fade" id="clearChatModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger">
+                    <i class="bi bi-exclamation-triangle"></i> Clear Chat History
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete all chat messages?</p>
+                <p class="text-danger"><strong>Warning:</strong> This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="{{ url_for('clear_chat') }}" class="btn btn-danger">
+                    Yes, Clear All Messages
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reset Settings Modal -->
+<div class="modal fade" id="resetSettingsModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger">
+                    <i class="bi bi-exclamation-triangle"></i> Reset All Settings
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Reset all website settings to default values?</p>
+                <p class="text-danger"><strong>Note:</strong> Books, users, and categories will not be affected.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="{{ url_for('reset_settings') }}" class="btn btn-danger">
+                    Reset to Defaults
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+function saveAllSettings() {
+    const formData = new FormData();
+    const inputs = document.querySelectorAll('input[name^="setting_"], textarea[name^="setting_"], select[name^="setting_"]');
+    
+    inputs.forEach(input => {
+        if (input.type === 'checkbox') {
+            formData.append(input.name, input.checked ? '1' : '0');
+        } else {
+            formData.append(input.name, input.value);
+        }
+    });
+    
+    fetch('/admin/settings/update', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Settings saved successfully!');
+            window.location.reload();
+        }
+    })
+    .catch(error => {
+        alert('Error saving settings: ' + error);
+    });
+}
+
+// Live preview for SEO
+document.addEventListener('DOMContentLoaded', function() {
+    const metaTitleInput = document.querySelector('input[name="setting_meta_title"]');
+    const metaDescInput = document.querySelector('textarea[name="setting_meta_description"]');
+    
+    if (metaTitleInput) {
+        metaTitleInput.addEventListener('input', function() {
+            document.getElementById('metaTitlePreview').textContent = 
+                this.value.substring(0, 60) + (this.value.length > 60 ? '...' : '');
+        });
+    }
+    
+    if (metaDescInput) {
+        metaDescInput.addEventListener('input', function() {
+            document.getElementById('metaDescPreview').textContent = 
+                this.value.substring(0, 160) + (this.value.length > 160 ? '...' : '');
+        });
+    }
+});
+</script>
+{% endblock %}
+{% endblock %}

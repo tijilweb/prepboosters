@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Community Chat - PrepBoosters{% endblock %}
+
+{% block extra_css %}
+<style>
+    .chat-container {
+        height: 60vh;
+        overflow-y: auto;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #f8f9fa;
+    }
+    
+    .message-input {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border: 2px solid #4e73df;
+    }
+    
+    .send-btn {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="text-center mb-4">
+                <h2>Community Chat</h2>
+                <p class="text-muted">Connect with fellow aspirants and discuss exam preparation</p>
+            </div>
+            
+            <div class="chat-container mb-3" id="chatMessages">
+                {% for message in messages %}
+                <div class="chat-message {% if message.user_id == session.user_id %}user{% endif %}">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <strong>
+                                <i class="bi bi-person-circle"></i>
+                                {{ message.user.username }}
+                            </strong>
+                            <small class="text-muted ms-2">
+                                {{ message.created_at.strftime('%H:%M') }}
+                            </small>
+                        </div>
+                    </div>
+                    <p class="mb-0 mt-2">{{ message.content }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <form method="POST" action="{{ url_for('send_message') }}" class="d-flex">
+                <input type="text" class="form-control message-input" 
+                       name="content" placeholder="Type your message here..." required>
+                <button type="submit" class="btn btn-primary send-btn">
+                    <i class="bi bi-send"></i> Send
+                </button>
+            </form>
+            
+            <div class="alert alert-info mt-3">
+                <i class="bi bi-info-circle"></i>
+                Chat rules: Be respectful, no spam, no sharing of personal information.
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    // Auto-scroll to bottom of chat
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatContainer = document.getElementById('chatMessages');
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    });
+</script>
+{% endblock %}
+{% endblock %}

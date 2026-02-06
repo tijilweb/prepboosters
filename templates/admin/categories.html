@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Categories - PrepBoosters{% endblock %}
+
+{% block extra_css %}
+<style>
+    .categories-container {
+        background: #f8f9fc;
+        min-height: 100vh;
+    }
+    
+    .category-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+        transition: all 0.3s;
+        border: 1px solid transparent;
+        height: 100%;
+    }
+    
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.15);
+        border-color: #4e73df;
+    }
+    
+    .category-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    
+    .category-icon-jee {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    
+    .category-icon-neet {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+    }
+    
+    .category-icon-10th {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+    }
+    
+    .book-count {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        margin-top: 10px;
+    }
+    
+    .action-buttons {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    
+    .category-card:hover .action-buttons {
+        opacity: 1;
+    }
+    
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+    }
+    
+    .empty-state-icon {
+        font-size: 4rem;
+        color: #dee2e6;
+        margin-bottom: 20px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .category-card {
+            padding: 20px;
+        }
+        
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+        }
+        
+        .action-buttons {
+            opacity: 1;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="categories-container">
+    <div class="container-fluid px-4 py-4">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="mb-1">Categories Management</h2>
+                <p class="text-muted mb-0">Organize JEE, NEET, and Class 10th materials</p>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                <i class="bi bi-plus-circle"></i> Add Category
+            </button>
+        </div>
+        
+        <!-- Categories Grid -->
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="category-card">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div class="category-icon 
+                            {% if 'jee' in category.name|lower %}category-icon-jee
+                            {% elif 'neet' in category.name|lower %}category-icon-neet
+                            {% else %}category-icon-10th{% endif %}">
+                            <i class="bi bi-{{ category.icon }}"></i>
+                        </div>
+                        <div class="action-buttons">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-secondary" type="button" 
+                                        data-bs-toggle="dropdown">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <button class="dropdown-item" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#editCategoryModal{{ category.id }}">
+                                            <i class="bi bi-pencil me-2"></i> Edit
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-danger" 
+                                           href="{{ url_for('delete_category', category_id=category.id) }}"
+                                           onclick="return confirm('Delete {{ category.name }}? All books will be moved to uncategorized.')">
+                                            <i class="bi bi-trash me-2"></i> Delete
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="mb-2">{{ category.name }}</h4>
+                    <p class="text-muted mb-3">{{ category.description }}</p>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="book-count bg-light text-primary">
+                            <i class="bi bi-book me-1"></i>
+                            {{ category.books|length }} Books
+                        </span>
+                        <a href="{{ url_for('category_books', category_id=category.id) }}" 
+                           class="btn btn-outline-primary btn-sm">
+                            View Books <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Modal -->
+            <div class="modal fade" id="editCategoryModal{{ category.id }}" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Category</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form method="POST" action="{{ url_for('edit_category', category_id=category.id) }}">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Category Name</label>
+                                    <input type="text" class="form-control" name="name" 
+                                           value="{{ category.name }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" name="description" 
+                                              rows="3">{{ category.description }}</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Icon</label>
+                                    <select class="form-select" name="icon">
+                                        <option value="book" {% if category.icon == 'book' %}selected{% endif %}>Book</option>
+                                        <option value="calculator" {% if category.icon == 'calculator' %}selected{% endif %}>Calculator</option>
+                                        <option value="activity" {% if category.icon == 'activity' %}selected{% endif %}>Activity</option>
+                                        <option value="book-open" {% if category.icon == 'book-open' %}selected{% endif %}>Book Open</option>
+                                        <option value="graph-up" {% if category.icon == 'graph-up' %}selected{% endif %}>Graph</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Update Category</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <i class="bi bi-folder-x"></i>
+                    </div>
+                    <h4 class="mb-3">No Categories Found</h4>
+                    <p class="text-muted mb-4">Start by creating your first category for JEE, NEET or Class 10th.</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                        <i class="bi bi-plus-circle"></i> Create First Category
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" action="{{ url_for('add_category') }}">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Category Name *</label>
+                        <input type="text" class="form-control" name="name" 
+                               placeholder="e.g., JEE Advanced" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" name="description" 
+                                  placeholder="Describe this category..." rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Icon</label>
+                        <select class="form-select" name="icon">
+                            <option value="book">📚 Book</option>
+                            <option value="calculator">🧮 Calculator</option>
+                            <option value="activity">📈 Activity</option>
+                            <option value="book-open">📖 Book Open</option>
+                            <option value="graph-up">📊 Graph</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add edit_category route to main.py -->
+<script>
+// Add this route to your main.py
+'''
+@app.route('/admin/categories/edit/<int:category_id>', methods=['POST'])
+@admin_required
+def edit_category(category_id):
+    category = Category.query.get_or_404(category_id)
+    category.name = request.form['name']
+    category.description = request.form['description']
+    category.icon = request.form['icon']
+    db.session.commit()
+    flash('Category updated successfully', 'success')
+    return redirect(url_for('admin_categories'))
+'''
+</script>
+{% endblock %}

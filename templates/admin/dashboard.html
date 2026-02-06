@@ -1,0 +1,493 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - PrepBoosters{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Dashboard Styles */
+    .admin-dashboard {
+        min-height: 100vh;
+        background: #f8f9fc;
+    }
+    
+    /* Stats Cards */
+    .stat-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+        transition: all 0.3s;
+        border-left: 4px solid;
+        height: 100%;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.2);
+    }
+    
+    .stat-card-primary {
+        border-left-color: #4e73df;
+    }
+    
+    .stat-card-success {
+        border-left-color: #1cc88a;
+    }
+    
+    .stat-card-warning {
+        border-left-color: #f6c23e;
+    }
+    
+    .stat-card-info {
+        border-left-color: #36b9cc;
+    }
+    
+    .stat-card-danger {
+        border-left-color: #e74a3b;
+    }
+    
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    
+    .stat-icon-primary {
+        background: rgba(78, 115, 223, 0.1);
+        color: #4e73df;
+    }
+    
+    .stat-icon-success {
+        background: rgba(28, 200, 138, 0.1);
+        color: #1cc88a;
+    }
+    
+    .stat-icon-warning {
+        background: rgba(246, 194, 62, 0.1);
+        color: #f6c23e;
+    }
+    
+    .stat-icon-info {
+        background: rgba(54, 185, 204, 0.1);
+        color: #36b9cc;
+    }
+    
+    /* Quick Actions */
+    .quick-action-card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+        transition: all 0.3s;
+        height: 100%;
+    }
+    
+    .quick-action-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.15);
+    }
+    
+    .action-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    /* Activity Feed */
+    .activity-item {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        transition: background 0.3s;
+    }
+    
+    .activity-item:hover {
+        background: #f8f9fa;
+    }
+    
+    .activity-item:last-child {
+        border-bottom: none;
+    }
+    
+    .activity-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .stat-card {
+            padding: 20px;
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+        
+        .quick-action-card {
+            margin-bottom: 15px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .admin-dashboard {
+            padding: 10px !important;
+        }
+        
+        .stat-card {
+            padding: 15px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <div class="container-fluid px-4 py-4">
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="mb-1">Admin Dashboard</h2>
+                <p class="text-muted mb-0">Welcome back, {{ session.username }}!</p>
+            </div>
+            <div class="d-flex">
+                <div class="dropdown me-2">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" 
+                            data-bs-toggle="dropdown">
+                        <i class="bi bi-plus-circle"></i> Quick Add
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addBookModal">
+                            <i class="bi bi-book me-2"></i> Add Book
+                        </a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                            <i class="bi bi-folder me-2"></i> Add Category
+                        </a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                            <i class="bi bi-person me-2"></i> Add User
+                        </a></li>
+                    </ul>
+                </div>
+                <button class="btn btn-primary" onclick="window.location.href='{{ url_for('home') }}'">
+                    <i class="bi bi-eye"></i> View Site
+                </button>
+            </div>
+        </div>
+        
+        <!-- Stats Row -->
+        <div class="row mb-4">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="stat-card stat-card-primary">
+                    <div class="stat-icon stat-icon-primary">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <h4 class="mb-1">{{ stats.total_users }}</h4>
+                    <p class="text-muted mb-0">Total Users</p>
+                    <small class="text-primary">
+                        <i class="bi bi-arrow-up"></i> {{ stats.recent_users }} new this week
+                    </small>
+                </div>
+            </div>
+            
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="stat-card stat-card-success">
+                    <div class="stat-icon stat-icon-success">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <h4 class="mb-1">{{ stats.total_books }}</h4>
+                    <p class="text-muted mb-0">Total Books</p>
+                    <small class="text-success">
+                        <i class="bi bi-arrow-up"></i> {{ stats.recent_books }} new this week
+                    </small>
+                </div>
+            </div>
+            
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="stat-card stat-card-warning">
+                    <div class="stat-icon stat-icon-warning">
+                        <i class="bi bi-chat-dots"></i>
+                    </div>
+                    <h4 class="mb-1">{{ stats.total_messages }}</h4>
+                    <p class="text-muted mb-0">Chat Messages</p>
+                    <small class="text-warning">
+                        <i class="bi bi-clock"></i> Real-time updates
+                    </small>
+                </div>
+            </div>
+            
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="stat-card stat-card-info">
+                    <div class="stat-icon stat-icon-info">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h4 class="mb-1">{{ stats.total_admins }}</h4>
+                    <p class="text-muted mb-0">Administrators</p>
+                    <small class="text-info">
+                        {{ "%.1f"|format(stats.admin_percentage) }}% of total
+                    </small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content Row -->
+        <div class="row">
+            <!-- Quick Actions -->
+            <div class="col-xl-8 mb-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Quick Actions</h5>
+                        <small class="text-muted">Click to perform action</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <a href="{{ url_for('admin_books') }}" class="text-decoration-none">
+                                    <div class="quick-action-card text-center">
+                                        <div class="action-icon bg-primary text-white">
+                                            <i class="bi bi-book"></i>
+                                        </div>
+                                        <h6 class="mb-2">Manage Books</h6>
+                                        <p class="text-muted small">Add, edit or remove study materials</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <a href="{{ url_for('admin_users') }}" class="text-decoration-none">
+                                    <div class="quick-action-card text-center">
+                                        <div class="action-icon bg-success text-white">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <h6 class="mb-2">Manage Users</h6>
+                                        <p class="text-muted small">View, edit or remove user accounts</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <a href="{{ url_for('admin_categories') }}" class="text-decoration-none">
+                                    <div class="quick-action-card text-center">
+                                        <div class="action-icon bg-warning text-white">
+                                            <i class="bi bi-folder"></i>
+                                        </div>
+                                        <h6 class="mb-2">Manage Categories</h6>
+                                        <p class="text-muted small">Organize JEE, NEET, Class 10th</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <a href="{{ url_for('admin_settings') }}" class="text-decoration-none">
+                                    <div class="quick-action-card text-center">
+                                        <div class="action-icon bg-info text-white">
+                                            <i class="bi bi-gear"></i>
+                                        </div>
+                                        <h6 class="mb-2">Website Settings</h6>
+                                        <p class="text-muted small">Customize site appearance</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <a href="{{ url_for('chat') }}" class="text-decoration-none">
+                                    <div class="quick-action-card text-center">
+                                        <div class="action-icon bg-purple text-white">
+                                            <i class="bi bi-chat-dots"></i>
+                                        </div>
+                                        <h6 class="mb-2">Monitor Chat</h6>
+                                        <p class="text-muted small">View community discussions</p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <a href="{{ url_for('backup_database') }}" class="text-decoration-none">
+                                    <div class="quick-action-card text-center">
+                                        <div class="action-icon bg-danger text-white">
+                                            <i class="bi bi-download"></i>
+                                        </div>
+                                        <h6 class="mb-2">Backup Data</h6>
+                                        <p class="text-muted small">Download database backup</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activity -->
+            <div class="col-xl-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">Recent Activity</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon bg-primary text-white">
+                                    <i class="bi bi-person-plus"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0"><strong>New user registered</strong></p>
+                                    <small class="text-muted">2 minutes ago</small>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon bg-success text-white">
+                                    <i class="bi bi-book"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0"><strong>New book added</strong></p>
+                                    <small class="text-muted">15 minutes ago</small>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon bg-warning text-white">
+                                    <i class="bi bi-chat"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0"><strong>New chat message</strong></p>
+                                    <small class="text-muted">30 minutes ago</small>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon bg-info text-white">
+                                    <i class="bi bi-shield-check"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0"><strong>Admin logged in</strong></p>
+                                    <small class="text-muted">1 hour ago</small>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="activity-icon bg-purple text-white">
+                                    <i class="bi bi-download"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0"><strong>Backup created</strong></p>
+                                    <small class="text-muted">2 hours ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- System Status -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">System Status</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="bg-success rounded-circle p-2 me-3">
+                                        <i class="bi bi-check-lg text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">Database</p>
+                                        <small class="text-success">Operational</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="bg-success rounded-circle p-2 me-3">
+                                        <i class="bi bi-check-lg text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">Chat System</p>
+                                        <small class="text-success">Active</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="bg-success rounded-circle p-2 me-3">
+                                        <i class="bi bi-check-lg text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">File Storage</p>
+                                        <small class="text-success">Google Drive Connected</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="bg-success rounded-circle p-2 me-3">
+                                        <i class="bi bi-check-lg text-white"></i>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">Users Online</p>
+                                        <small class="text-success">{{ stats.recent_users }} Active</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Add Modals -->
+<div class="modal fade" id="addBookModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Quick Add Book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Redirecting to books management page...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="{{ url_for('admin_books') }}" class="btn btn-primary">Go to Books</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Auto-refresh stats every 30 seconds
+setTimeout(() => {
+    window.location.reload();
+}, 30000);
+</script>
+{% endblock %}

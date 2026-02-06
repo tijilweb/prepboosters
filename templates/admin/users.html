@@ -1,0 +1,441 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Users - PrepBoosters{% endblock %}
+
+{% block extra_css %}
+<style>
+    .users-container {
+        background: #f8f9fc;
+        min-height: 100vh;
+    }
+    
+    .user-card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+        transition: all 0.3s;
+        border: 1px solid transparent;
+    }
+    
+    .user-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.15);
+    }
+    
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        margin-right: 15px;
+    }
+    
+    .admin-badge {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .last-active {
+        font-size: 0.85rem;
+        color: #6c757d;
+    }
+    
+    .action-dropdown {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .stats-card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+        text-align: center;
+    }
+    
+    .stats-number {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    /* Bulk Actions */
+    .bulk-actions {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .user-card {
+            padding: 15px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="users-container">
+    <div class="container-fluid px-4 py-4">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="mb-1">Users Management</h2>
+                <p class="text-muted mb-0">Manage student and administrator accounts</p>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                <i class="bi bi-person-plus"></i> Add User
+            </button>
+        </div>
+        
+        <!-- Stats Row -->
+        <div class="row mb-4">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="stats-card">
+                    <div class="stats-number text-primary">{{ users|length }}</div>
+                    <p class="text-muted mb-0">Total Users</p>
+                </div>
+            </div>
+            
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="stats-card">
+                    <div class="stats-number text-success">{{ users|selectattr('is_admin', 'equalto', true)|list|length }}</div>
+                    <p class="text-muted mb-0">Administrators</p>
+                </div>
+            </div>
+            
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="stats-card">
+                    <div class="stats-number text-warning">{{ recent_users }}</div>
+                    <p class="text-muted mb-0">Active Today</p>
+                </div>
+            </div>
+            
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="stats-card">
+                    <div class="stats-number text-info">{{ total_messages }}</div>
+                    <p class="text-muted mb-0">Total Messages</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Filters and Search -->
+        <div class="bulk-actions">
+            <div class="row g-3">
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="searchUsers" 
+                           placeholder="Search users by username, email, or role...">
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="roleFilter">
+                        <option value="">All Roles</option>
+                        <option value="admin">Administrators</option>
+                        <option value="student">Students</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Users List -->
+        <div class="row" id="usersList">
+            {% for user in users %}
+            <div class="col-12 mb-3" data-role="{{ 'admin' if user.is_admin else 'student' }}">
+                <div class="user-card position-relative">
+                    <!-- Action Dropdown -->
+                    <div class="action-dropdown">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary" type="button" 
+                                    data-bs-toggle="dropdown">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                {% if user.is_admin %}
+                                <li>
+                                    <a class="dropdown-item text-warning" 
+                                       href="{{ url_for('remove_admin', user_id=user.id) }}"
+                                       onclick="return confirm('Remove admin privileges from {{ user.username }}?')">
+                                        <i class="bi bi-person-dash me-2"></i> Remove Admin
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a class="dropdown-item text-success" 
+                                       href="{{ url_for('make_admin', user_id=user.id) }}"
+                                       onclick="return confirm('Make {{ user.username }} an administrator?')">
+                                        <i class="bi bi-person-check me-2"></i> Make Admin
+                                    </a>
+                                </li>
+                                {% endif %}
+                                
+                                <li>
+                                    <button class="dropdown-item" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#resetPasswordModal{{ user.id }}">
+                                        <i class="bi bi-key me-2"></i> Reset Password
+                                    </button>
+                                </li>
+                                
+                                <li>
+                                    <button class="dropdown-item" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#editUserModal{{ user.id }}">
+                                        <i class="bi bi-pencil me-2"></i> Edit User
+                                    </button>
+                                </li>
+                                
+                                {% if user.id != session.user_id %}
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item text-danger" 
+                                       href="{{ url_for('delete_user', user_id=user.id) }}"
+                                       onclick="return confirm('Permanently delete {{ user.username }}? This cannot be undone.')">
+                                        <i class="bi bi-trash me-2"></i> Delete User
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center">
+                        <!-- Avatar -->
+                        <div class="user-avatar" 
+                             style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            {{ user.username[0].upper() }}
+                        </div>
+                        
+                        <!-- User Info -->
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center mb-1">
+                                <h5 class="mb-0 me-2">{{ user.username }}</h5>
+                                {% if user.is_admin %}
+                                <span class="admin-badge bg-danger text-white">
+                                    <i class="bi bi-shield-check"></i> Admin
+                                </span>
+                                {% else %}
+                                <span class="admin-badge bg-primary text-white">
+                                    <i class="bi bi-person"></i> Student
+                                </span>
+                                {% endif %}
+                                
+                                {% if user.id == session.user_id %}
+                                <span class="admin-badge bg-info text-white ms-2">
+                                    <i class="bi bi-person-fill"></i> You
+                                </span>
+                                {% endif %}
+                            </div>
+                            
+                            <p class="text-muted small mb-1">
+                                <i class="bi bi-envelope"></i> {{ user.email }}
+                            </p>
+                            
+                            <div class="d-flex">
+                                <small class="last-active me-3">
+                                    <i class="bi bi-calendar"></i> Joined: {{ user.created_at.strftime('%d %b %Y') }}
+                                </small>
+                                <small class="last-active">
+                                    <i class="bi bi-clock"></i> Last active: {{ user.last_active.strftime('%d %b %Y %H:%M') }}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit User Modal -->
+                <div class="modal fade" id="editUserModal{{ user.id }}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit User</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <form method="POST" action="{{ url_for('edit_user', user_id=user.id) }}">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Username</label>
+                                        <input type="text" class="form-control" 
+                                               value="{{ user.username }}" disabled>
+                                        <small class="text-muted">Username cannot be changed</small>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" 
+                                               name="email" value="{{ user.email }}" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label">Role</label>
+                                        <select class="form-select" name="is_admin">
+                                            <option value="0" {% if not user.is_admin %}selected{% endif %}>
+                                                Student
+                                            </option>
+                                            <option value="1" {% if user.is_admin %}selected{% endif %}>
+                                                Administrator
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" 
+                                            data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Update User</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reset Password Modal -->
+                <div class="modal fade" id="resetPasswordModal{{ user.id }}" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Reset Password</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <form method="POST" action="{{ url_for('reset_password', user_id=user.id) }}">
+                                <div class="modal-body">
+                                    <div class="alert alert-warning">
+                                        <i class="bi bi-exclamation-triangle"></i>
+                                        User will need to change password on next login.
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label">New Password *</label>
+                                        <input type="password" class="form-control" 
+                                               name="new_password" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label">Confirm Password *</label>
+                                        <input type="password" class="form-control" 
+                                               name="confirm_password" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" 
+                                            data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-warning">Reset Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <div class="empty-state-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <h4 class="mb-3">No Users Found</h4>
+                    <p class="text-muted mb-4">Start by adding your first user.</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                        <i class="bi bi-person-plus"></i> Add First User
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Add User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" action="{{ url_for('add_user') }}">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Username *</label>
+                        <input type="text" class="form-control" name="username" required>
+                        <small class="text-muted">Unique username (cannot be changed later)</small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Password *</label>
+                        <input type="password" class="form-control" name="password" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Confirm Password *</label>
+                        <input type="password" class="form-control" name="confirm_password" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Role</label>
+                        <select class="form-select" name="is_admin">
+                            <option value="0" selected>Student</option>
+                            <option value="1">Administrator</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchUsers');
+    const roleFilter = document.getElementById('roleFilter');
+    const userCards = document.querySelectorAll('#usersList > div');
+    
+    function filterUsers() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const roleValue = roleFilter.value;
+        
+        userCards.forEach(card => {
+            const username = card.querySelector('h5').textContent.toLowerCase();
+            const email = card.querySelector('p.text-muted').textContent.toLowerCase();
+            const role = card.dataset.role;
+            
+            const matchesSearch = searchTerm === '' || 
+                                 username.includes(searchTerm) || 
+                                 email.includes(searchTerm);
+            const matchesRole = roleValue === '' || role === roleValue;
+            
+            card.style.display = matchesSearch && matchesRole ? '' : 'none';
+        });
+    }
+    
+    searchInput.addEventListener('input', filterUsers);
+    roleFilter.addEventListener('change', filterUsers);
+});
+</script>
+{% endblock %}
+{% endblock %}

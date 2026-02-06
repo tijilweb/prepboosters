@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Home - PrepBoosters{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold">Ace Your Exams with PrepBoosters</h1>
+                <p class="lead">Comprehensive study materials for JEE, NEET, and Class 10th. All resources in one place, accessible anywhere.</p>
+                {% if 'user_id' not in session %}
+                <a href="{{ url_for('register') }}" class="btn btn-light btn-lg">
+                    <i class="bi bi-rocket-takeoff"></i> Get Started Free
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<div class="container">
+    <div class="text-center mb-5">
+        <h2>Choose Your Preparation Path</h2>
+        <p class="text-muted">Select your exam category and access curated study materials</p>
+    </div>
+    
+    <div class="row g-4">
+        {% for category in categories %}
+        <div class="col-md-4">
+            <a href="{{ url_for('category_books', category_id=category.id) }}" class="text-decoration-none">
+                <div class="card category-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3">
+                            <i class="bi bi-{{ category.icon }} display-4" style="color: #4e73df;"></i>
+                        </div>
+                        <h3 class="card-title">{{ category.name }}</h3>
+                        <p class="card-text text-muted">{{ category.description }}</p>
+                        <span class="badge bg-primary">{{ category.books|length }} Books Available</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container mt-5">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="text-center p-4">
+                <i class="bi bi-google display-4 text-primary mb-3"></i>
+                <h4>Google Drive Integration</h4>
+                <p>All books accessible via Google Drive links for easy downloading and viewing.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-center p-4">
+                <i class="bi bi-chat-dots display-4 text-success mb-3"></i>
+                <h4>Community Chat</h4>
+                <p>Connect with fellow aspirants, discuss doubts, and share insights.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="text-center p-4">
+                <i class="bi bi-shield-check display-4 text-warning mb-3"></i>
+                <h4>Verified Content</h4>
+                <p>All materials verified by subject experts for accuracy and relevance.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
