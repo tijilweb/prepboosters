@@ -7,7 +7,20 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key-change-this-in-production'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///prepboosters.db'
+
+# Render के लिए database configuration
+# Render automatic रूप से DATABASE_URL environment variable provide करता है
+database_url = os.environ.get('DATABASE_URL')
+
+if database_url:
+    # PostgreSQL URL को fix करें (Render के format के लिए)
+    if database_url.startswith('postgres://'):
+        database_url = database_url.replace('postgres://', 'postgresql://', 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+else:
+    # Local development के लिए SQLite
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///prepboosters.db'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -664,7 +677,6 @@ def initialize_database():
         db.session.commit()
         print("✅ Database initialized successfully!")
 
-# ==================== MAIN EXECUTION ====================
 # ==================== MAIN EXECUTION ====================
 if __name__ == '__main__':
     # Create templates directory
