@@ -665,6 +665,7 @@ def initialize_database():
         print("✅ Database initialized successfully!")
 
 # ==================== MAIN EXECUTION ====================
+# ==================== MAIN EXECUTION ====================
 if __name__ == '__main__':
     # Create templates directory
     if not os.path.exists('templates'):
@@ -736,8 +737,14 @@ if __name__ == '__main__':
     print("\n" + "="*50)
     print("🚀 PrepBoosters Website Started!")
     print("="*50)
-    print("🌐 Access: http://localhost:5000")
+    
+    # Render.com specific settings
+    port = int(os.environ.get("PORT", 5000))  # Render provides PORT environment variable
+    host = '0.0.0.0'  # Important for Render
+    
+    print(f"🌐 Server running on port: {port}")
+    print(f"🌐 Host: {host}")
     print("🔑 Admin: username='admin', password='admin123'")
     print("="*50 + "\n")
     
-    app.run(debug=True, port=5000)
+    app.run(debug=False, host=host, port=port)  # debug=False for production
